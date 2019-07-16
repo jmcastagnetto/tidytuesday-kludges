@@ -1,12 +1,14 @@
 remote_theme: thelehhman/texture
 show_excerpts: true
+permalink: /posts/:title/
 texture:
   title: "Visualizations for #TidyTuesday datasets"
   tagline: "ugly but works (TM)"
   date_format: "%Y-%m-%d"
-  showNav: true
+  showNav: false
   style: green
-
+  header_pages:
+    - index.md
   social_links:
     twitter: jmcastagnetto
     github: jmcastagnetto
