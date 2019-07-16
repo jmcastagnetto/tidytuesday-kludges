@@ -1,6 +1,1 @@
-theme: jekyll-theme-hacker
-remote_theme: thelehhman/texture
-texture:
-  style: blue
-  social_links:
-    twitter: jmcastagnetto
+remote_theme: Simpleyyt/jekyll-theme-next
