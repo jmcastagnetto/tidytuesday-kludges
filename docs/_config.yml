@@ -1,1 +1,8 @@
 remote_theme: Simpleyyt/jekyll-theme-next
+rss: false
+menu:
+  home: /
+since: 2019
+social:
+  Github: jmcastagnetto
+  Twitter: jmcastagnetto
