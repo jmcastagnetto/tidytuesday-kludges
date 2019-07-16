@@ -14,8 +14,8 @@ calchart <- r4ds_members %>%
   group_by(year) %>%
   e_charts(date) %>%
   e_title(
-    text = "Percentage of active members who post messages",
-    subtext = "#TidyTuesday: 2019-07-16 R4DS Members",
+    text = "Daily percentage of active members who post messages in the R4DS community",
+    subtext = "#TidyTuesday - Dataset: 2019-07-16 R4DS Online Learning Community Stats",
     sublink = "https://github.com/rfordatascience/tidytuesday/tree/master/data/2019/2019-07-16"
   ) %>%
   e_text_g(
@@ -37,11 +37,17 @@ calchart <- r4ds_members %>%
                top = 600) %>%
   e_tooltip("item",
             formatter = e_tooltip_item_formatter("percent")) %>%
-  e_toolbox_feature()
+  e_toolbox_feature(
+    feature = c(
+      "saveAsImage",
+      "dataView"
+    )
+  )
 
 htmlwidgets::saveWidget(
   widget = calchart,
+  selfcontained = TRUE,
   file =  here::here("2019-07-16-r4ds-members/calendar-chart.html"),
-  title = "Calendar chart"
+  title = "Calendar chart (R4DS Community)"
 )
 
