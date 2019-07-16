@@ -1,13 +1,18 @@
+---
+layout: default
+---
 
-# Visualizations for `#TidyTuesday` datasets
+<div class='o-wrapper'>
+  <div class='o-grid'>
+    {% for post in paginator.posts %}
+      {% include post-card.liquid %}
+    {% endfor %}
+  </div>
 
-<ul>
-  {% for post in site.posts %}
-    <li>
-      <a href="{{ post.url }}">{{ post.title }}</a>
-    </li>
-  {% endfor %}
-</ul>
+  <div class='o-grid'>
+    {% include pagination.html %}
+  </div>
+</div>
 
 
 ## 2019-06-25: UFO Sightings
