@@ -4,6 +4,14 @@ layout: home
 
 # Visualizations for `#TidyTuesday` datasets
 
+<ul>
+  {% for post in site.posts %}
+    <li>
+      <a href="{{ post.url }}">{{ post.title }}</a>
+    </li>
+  {% endfor %}
+</ul>
+
 
 ## 2019-06-25: UFO Sightings
 
