@@ -1,1 +1,5 @@
 remote_theme: thelehhman/texture
+texture:
+  style: blue
+  social_links:
+    twitter: jmcastagnetto
