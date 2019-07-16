@@ -1,1 +1,10 @@
 remote_theme: thelehhman/texture
+
+texture:
+  show_excerpts: true
+  showNav: true
+  style: blue
+  social-links:
+    twitter: jmcastagnetto
+    github: jmcastagnetto
+    linkedIn: in/jesuscastagnetto
