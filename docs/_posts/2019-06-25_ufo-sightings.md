@@ -1,4 +1,7 @@
-## 2019-06-25: UFO Sightings
+---
+layout: post
+title: 2019-06-25: UFO Sightings
+---
 
 Animation of UFO sightings
 
