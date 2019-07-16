@@ -1,7 +1,8 @@
+---
+layout: home
+---
+
 # Visualizations for `#TidyTuesday` datasets
-
-
-
 
 
 ## 2019-06-25: UFO Sightings
