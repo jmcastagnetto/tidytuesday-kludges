@@ -1,23 +1,7 @@
----
-layout: default
----
-
-<div class='o-wrapper'>
-  <div class='o-grid'>
-    {% for post in paginator.posts %}
-      {% include post-card.liquid %}
-    {% endfor %}
-  </div>
-
-  <div class='o-grid'>
-    {% include pagination.html %}
-  </div>
-</div>
-
 
 ## 2019-06-25: UFO Sightings
 
--Animation of UFO sightings
+- Animation of UFO sightings
 ![Animation of UFO sightings](2019-06-25_ufo-sightings/animation-ufo-sightings_1910-2014.gif) using [tmap](https://github.com/mtennekes/tmap)
 
 
