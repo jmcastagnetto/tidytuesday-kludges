@@ -1,3 +1,4 @@
+theme: jekyll-theme-hacker
 remote_theme: thelehhman/texture
 texture:
   style: blue
