@@ -7,33 +7,30 @@ load(here::here("2019-07-02_media-franchises/data/media_franchises.Rdata"))
 
 df <- media_franchises %>%
   mutate(
-    decade = as.factor((year_created %/% 10) * 10)
+    Decade = as.factor((year_created %/% 10) * 10)
   ) %>%
-  group_by(decade, revenue_category) %>%
+  group_by(Decade, revenue_category) %>%
   summarise(
     total_revenue = sum(revenue)
   ) %>%
   ungroup() %>%
-  group_by(decade) %>%
+  group_by(Decade) %>%
   mutate(
     pct_revenue = total_revenue / sum(total_revenue)
   ) %>%
-  ungroup() %>%
   select(-total_revenue) %>%
   pivot_wider(
-    id_cols = decade,
+    id_cols = Decade,
     names_from = revenue_category,
     values_from = pct_revenue,
     values_fill = list(pct_revenue = 0)
   )
 
-#
-# df %>%
-#   group_by(decade) %>%
-
-a <- ggRadar(data = df, mapping = aes(color = decade),
-        rescale = FALSE, interactive = FALSE,
-        legend.position = "bottom") +
+radar_chart <- ggRadar(data = df,
+       mapping = aes(
+         color = Decade),
+       interactive = FALSE, horizontal = TRUE,
+       size = 1) +
   theme_minimal() +
   scale_y_continuous(labels = scales::percent) +
   theme(
@@ -41,31 +38,16 @@ a <- ggRadar(data = df, mapping = aes(color = decade),
     legend.position = "none"
   ) +
   labs(
-    title = "Decade: {closest_state}"
+    title = "Change in revenue distribution for media franchises",
+    subtitle = "Decade: {closest_state}",
+    caption = "@jmcastagnetto (Jesus M. Castagnetto)"
   ) +
-  transition_states(decade) +
+  transition_states(Decade) +
   ease_aes("linear")
 
-a
+radar_chart
 
-library(GGally)
-
-ggparcoord(df, 2:ncol(data), groupColumn = "decade") +
-  coord_flip()
-
-ggparallel(data = df)
-
-b <- ggradar(df)
-
-b +
-  transition_states(decade)
-
-
-
-, mapping = aes(facet = decade), )
-
-
-p <- ggradar()
-
-p +
-  facet_wrap(~decade, ncol = 3)
+anim_save(
+  filename  = here::here("2019-07-02_media-franchises/radar-chart.gif"),
+  animation = radar_chart
+)
