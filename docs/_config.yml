@@ -6,8 +6,9 @@ texture:
   date_format: "%Y-%m-%d"
   show_excerpts: true
   showNav: true
-  style: blue
-  social-links:
+  style: green
+
+  social_links:
     twitter: jmcastagnetto
     github: jmcastagnetto
     linkedIn: in/jesuscastagnetto
