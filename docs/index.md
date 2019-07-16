@@ -8,7 +8,7 @@
   {% endfor %}
 </ul>
 
-<hr />
+
 
 ## 2019-06-25: UFO Sightings
 
