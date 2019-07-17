@@ -8,5 +8,7 @@ categories: [tidytuesday, R]
 
 Source code: https://github.com/jmcastagnetto/tidytuesday-kludges/tree/master/2019-07-16-r4ds-members
 
+<iframe src="/tidytuesday-kludges/assets/2019-07-16-r4ds-community-calendar-chart.html">Calendar chart</iframe>
+
 <!--more-->
 
