@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Using the R4DS Online Learning Community Stats dataset
+title: A calendar chart using the R4DS Online Learning Community Stats dataset
 categories: [tidytuesday, R]
 ---
 

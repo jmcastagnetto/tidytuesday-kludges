@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Using the 'Media Franchises' dataset"
+title: "Looking at revenue in the 'Media Franchises' dataset"
 categories: [tidytuesday, R]
 ---
 

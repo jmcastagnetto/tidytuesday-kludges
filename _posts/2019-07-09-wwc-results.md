@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Using the Women's World Cup Results dataset
+title: Visualizing the Women's World Cup Results dataset
 categories: [tidytuesday, R]
 ---
 

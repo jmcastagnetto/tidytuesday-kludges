@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Using the UFO Sightings dataset"
+title: "Animating the UFO Sightings dataset"
 categories: [tidytuesday, R]
 ---
 
