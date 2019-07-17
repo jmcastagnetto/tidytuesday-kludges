@@ -4,6 +4,8 @@ title: "Using the 'Media Franchises' dataset"
 categories: [tidytuesday, R]
 ---
 
+Source code: https://github.com/jmcastagnetto/tidytuesday-kludges/tree/master/2019-07-02_media-franchises
+
 Share of revenue per category over the decades
 
 ![Share of revenue per category over the decades](/tidytuesday-kludges/assets/2019-07-02_media-franchises-category-decades.png)

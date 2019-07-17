@@ -1,7 +1,10 @@
 ---
 layout: post
-title: Using the Women's World Cup dataset
+title: Using the Women's World Cup Results dataset
+categories: [tidytuesday, R]
 ---
+
+Source code: https://github.com/jmcastagnetto/tidytuesday-kludges/tree/master/2019-07-09-womens_world_cup_results
 
 Making a nice ridges plot using [ggridges](https://github.com/clauswilke/ggridges)
 
