@@ -8,7 +8,7 @@ minima:
     twitter: jmcastagnetto
     github: jmcastagnetto
     linkedin: jesuscastagnetto
-  rss: false
+    rss: false
 header_pages:
   - index.md
 theme: minima
