@@ -2,10 +2,7 @@
 layout: post
 title: "Using the 'Media Franchises' dataset"
 categories: [tidytuesday, R]
-
 ---
-
-# Using the 'Media Franchises' dataset
 
 Share of revenue per category over the decades
 
