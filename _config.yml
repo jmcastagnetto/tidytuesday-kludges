@@ -1,15 +1,17 @@
-theme: minima
-#remote-theme: kitian616/jekyll-TeXt-theme
 title: "Visualizations for #TidyTuesday datasets"
 description: My TidyTuesday kludges
 author: Jesus M. Castagnetto
 show_excerpts: true
 minima:
-    date_format: "%Y-%m-%d"
-    social_links:
-        twitter: jmcastagnetto
-        github: jmcastagnetto
-        linkedIn: jesuscastagnetto
-    rss: false
+  date_format: "%Y-%m-%d"
+  social_links:
+    twitter: jmcastagnetto
+    github: jmcastagnetto
+    linkedIn: jesuscastagnetto
+  rss: false
 header_pages:
-    - index.md
+  - index.md
+theme: minima
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
