@@ -4,9 +4,9 @@ title: Using the Women's World Cup Results dataset
 categories: [tidytuesday, R]
 ---
 
-Source code: https://github.com/jmcastagnetto/tidytuesday-kludges/tree/master/2019-07-09-womens_world_cup_results
 
-Making a nice ridges plot using [ggridges](https://github.com/clauswilke/ggridges)
+Making a nice ridges plot using [ggridges](https://github.com/clauswilke/ggridges).
+[Source code](https://github.com/jmcastagnetto/tidytuesday-kludges/tree/master/2019-07-09-womens_world_cup_results)
 
 ![Rigdges plot of WWC results](/tidytuesday-kludges/assets/2019-07-09-wwcr-ridges_plot.png) 
 
