@@ -9,3 +9,5 @@ minima:
     social_links:
         twitter: jmcastagnetto
         github: jmcastagnetto
+header_pages:
+    - index.md
