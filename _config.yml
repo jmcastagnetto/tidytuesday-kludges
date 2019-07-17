@@ -1,29 +1,11 @@
-remote-theme: kitian616/jekyll-TeXt-theme
+theme: minima
+#remote-theme: kitian616/jekyll-TeXt-theme
 title: "Visualizations for #TidyTuesday datasets"
-date_format: "%Y-%m-%d"
-
-#theme: jekyll-theme-hacker
-
-text_skin: dark
 description: My TidyTuesday kludges
-author:
-    name: Jesus M. Castagnetto
-    twitter: jmcastagnetto
-    github: jmcastagnetto
-repository: jmcastagnetto/tidytuesday-kludges
-reporitory_tree: gh-pages
-
-defaults:
-  - scope:
-      path: ""
-      type: posts
-    values:
-      layout: article
-      sharing: true
-      license: true
-      aside:
-        toc: true
-      show_edit_on_github: false
-      show_subscribe: false
-      pageview: true
-
+author: Jesus M. Castagnetto
+show_excerpts: true
+minima:
+    date_format: "%Y-%m-%d"
+    social_links:
+        twitter: jmcastagnetto
+        github: jmcastagnetto
