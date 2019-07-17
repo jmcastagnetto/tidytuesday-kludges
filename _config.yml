@@ -1,7 +1,6 @@
 theme: minima
 #remote-theme: kitian616/jekyll-TeXt-theme
 title: "Visualizations for #TidyTuesday datasets"
-list_title: KLudges
 description: My TidyTuesday kludges
 author: Jesus M. Castagnetto
 show_excerpts: true
