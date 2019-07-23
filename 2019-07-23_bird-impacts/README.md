@@ -33,5 +33,6 @@ $ csvstack strike_reports-1990_1999.csv \
 
 $ csvclean strike_reports-1990_current.csv
 No errors.
-
 ```
+
+- Finally, some cleanup moving the extracted files into a `.7z` archive, and compressing the merged csv using `gzip` (see the [data](data/) dir)
