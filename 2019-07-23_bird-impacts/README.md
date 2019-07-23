@@ -36,3 +36,5 @@ No errors.
 ```
 
 - Finally, some cleanup moving the extracted files into a `.7z` archive, and compressing the merged csv using `gzip` (see the [data](data/) dir)
+
+- The visualizations make use of the full dataset, which includes strikes/impacts with birds and other wildlife.
