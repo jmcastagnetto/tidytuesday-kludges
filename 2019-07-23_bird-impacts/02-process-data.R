@@ -1,7 +1,7 @@
 library(readr)
 library(janitor)
 
-bird_strikes_full <- read_csv(
+bird_strikes <- read_csv(
   here::here("2019-07-23_bird-impacts/data/strike_reports-1990_current.csv.gz")
 ) %>%
   clean_names() %>%
@@ -16,6 +16,6 @@ bird_strikes_full <- read_csv(
          nr_injuries, nr_fatalities)
 
 save(
-  bird_strikes_full,
-  file = here::here("2019-07-23_bird-impacts/data/bird_strikes_full.Rdata")
+  bird_strikes,
+  file = here::here("2019-07-23_bird-impacts/data/bird_strikes.Rdata")
 )
