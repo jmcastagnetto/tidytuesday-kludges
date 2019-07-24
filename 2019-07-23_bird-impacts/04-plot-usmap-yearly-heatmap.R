@@ -68,5 +68,6 @@ plot_gg(p2,
         scale=250)
 
 render_movie(
-  filename = here::here("2019-07-23_bird-impacts/wildlife-strikes-usamap.mp4")
-
+  filename = here::here("2019-07-23_bird-impacts/wildlife-strikes-usamap.mp4"),
+  phi = 70
+)
