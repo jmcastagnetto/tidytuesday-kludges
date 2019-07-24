@@ -1,4 +1,4 @@
-# Notes on getting the whole dataset from https://wildlife.faa.gov/
+## Notes on getting the full FAA Wildlife Strikes dataset from https://wildlife.faa.gov/
 
 - The database in MS Access format is at the URL: https://wildlife.faa.gov/downloads/wildlife.zip
 - Once extracted the archive `wildlife.accdb` can be converted to CSV using the Linux command-line tools in the `mdbtools` package, as follows:
