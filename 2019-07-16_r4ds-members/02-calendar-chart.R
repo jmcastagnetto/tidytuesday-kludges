@@ -2,7 +2,7 @@ library(tidyverse)
 library(echarts4r)
 
 load(
-  here::here("2019-07-16-r4ds-members/data/r4ds_members.Rdata")
+  here::here("2019-07-16_r4ds-members/data/r4ds_members.Rdata")
 )
 
 calchart <- r4ds_members %>%
@@ -47,7 +47,7 @@ calchart <- r4ds_members %>%
 htmlwidgets::saveWidget(
   widget = calchart,
   selfcontained = TRUE,
-  file =  here::here("2019-07-16-r4ds-members/calendar-chart.html"),
+  file =  here::here("2019-07-16_r4ds-members/calendar-chart.html"),
   title = "Calendar chart (R4DS Community)"
 )
 

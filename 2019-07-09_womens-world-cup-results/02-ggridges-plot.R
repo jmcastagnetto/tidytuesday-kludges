@@ -3,7 +3,7 @@ library(forcats)
 library(ggridges)
 
 load(
-  here::here("2019-07-09-womens_world_cup_results/data/orig/wwc_results.Rdata")
+  here::here("2019-07-09_womens-world-cup-results/data/orig/wwc_results.Rdata")
 )
 
 p1 <- ggplot(squads,
@@ -31,6 +31,6 @@ p1 <- ggplot(squads,
   )
 
 ggsave(
-  filename = here::here("2019-07-09-womens_world_cup_results/20190709-wwcr-ridges_plot.png"),
+  filename = here::here("2019-07-09_womens-world-cup-results/20190709-wwcr-ridges_plot.png"),
   plot = p1, width = 6, height = 9
 )

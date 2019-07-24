@@ -20,6 +20,6 @@ wwc_outcomes <- wwc_outcomes %>%
 
 save(
   wwc_outcomes, squads, codes,
-  file = here::here("2019-07-09-womens_world_cup_results/data/orig/wwc_results.Rdata")
+  file = here::here("2019-07-09_womens-world-cup-results/data/orig/wwc_results.Rdata")
 )
 

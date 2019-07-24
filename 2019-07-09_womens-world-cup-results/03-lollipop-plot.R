@@ -2,7 +2,7 @@ library(tidyverse)
 library(forcats)
 
 load(
-  here::here("2019-07-09-womens_world_cup_results/data/orig/wwc_results.Rdata")
+  here::here("2019-07-09_womens-world-cup-results/data/orig/wwc_results.Rdata")
 )
 
 wwc_sum <- wwc_outcomes %>%
@@ -39,5 +39,5 @@ ggplot(wwc_sum,
   )
 
 ggsave(
-  filename = here::here("2019-07-09-womens_world_cup_results/20190709-wwcr-lollipop_plot.png")
+  filename = here::here("2019-07-09_womens-world-cup-results/20190709-wwcr-lollipop_plot.png")
 )
