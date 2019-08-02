@@ -7,7 +7,8 @@ load(
 
 tmp <- video_games %>% filter(!is.na(release_year))
 txtdensity(tmp$release_year)
-txtbarchart(as.factor(tmp$release_year))
+txtbarchart(as.factor(tmp$release_year), pch = "#",
+            ylab = "Games")
 
 txtplot(tmp$price,
         tmp$metascore, xlab = "Price", ylab = "Metascore")
@@ -26,3 +27,5 @@ txtboxplot(
   range_0_20, range_20_40, range_40_600,
   xlab = "Metascore by price ranges"
 )
+
+txtdensity(tmp$metascore)
