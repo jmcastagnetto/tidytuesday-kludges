@@ -37,9 +37,9 @@ txtboxplot(
   xlab = "Metascore distribution by price range"
 )
 
-# 95% quantile for price
+# 97% quantile for price
 quantile(video_games$price, probs = 0.97, na.rm = TRUE)
-# Price distribution up to 99% quantile
+# Price distribution up to 97% quantile
 # pricing "sweet spots" ~ 1, 5, 10, 15, 20, 30 (USD)
 txtdensity(
   (video_games
