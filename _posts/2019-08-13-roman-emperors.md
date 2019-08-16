@@ -17,7 +17,14 @@ Emperors from the **Principate** era marked as squares, and from the **Dominate*
 
 ## Using igraph
 
+Regular network
 
+![Regular network](/tidytuesday-kludges/assets/2019-08-13-igraph-plot.png)
+
+And with (artificial) clusters
+
+![Network with clusters](/tidytuesday-kludges/assets/2019-08-13-igraph-cluster-plot.png)
 
 ## Using ggraph
 
+![Regular network](/tidytuesday-kludges/assets/2019-08-13-ggraph-plot.png)
