@@ -35,7 +35,7 @@ p1 <- ggplot(df, aes(x = decade, y = ycumul / 1e3, fill = country)) +
 pf1 <- build_tidytuesday_plot(p1, extrainfo = "nuclear explosions dataset, 2019-08-20")
 
 ggsave(
-  filename = here::here("2019-08-20_nuclear-explosions/yield-per-country,png"),
+  filename = here::here("2019-08-20_nuclear-explosions/yield-per-country.png"),
   device = "png",
   plot = pf1,
   width = 12,
