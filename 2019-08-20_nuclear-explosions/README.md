@@ -16,3 +16,5 @@ FAQ](https://nuclearweaponarchive.org/Nwfaq/Nfaq5.html#nfaq5.1).
 Range of a thermal effect capable of producing third degree burns: ![equation for r_thermal](rtherm-eq.gif)
 
 Range of a blast effect producing 20psi (100% mortality): ![equation for r_blast](rblast-eq.gif)
+
+The post with all visualizations is at https://jmcastagnetto.github.io/tidytuesday-kludges/tidytuesday/r/2019/08/20/nuclear-explosions.html
