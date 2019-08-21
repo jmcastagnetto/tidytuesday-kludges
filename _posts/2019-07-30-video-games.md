@@ -6,7 +6,7 @@ categories: [tidytuesday, R]
 
 [Source code](https://github.com/jmcastagnetto/tidytuesday-kludges/tree/master/2019-07-30_video_games)
 
-The data comes from [#TidyTuesday Video games dataset](https://github.com/rfordatascience/tidytuesday/blob/master/data/2019/2019-07-30), and I decided to go "old style" and used the [txtplot](https://cran.r-project.org/web/packages/txtplot/index.html) R package.
+The data comes from [#TidyTuesday Video games dataset](https://github.com/rfordatascience/tidytuesday/blob/master/data/2019/2019-07-30), and I decided to go "old school" and used the [txtplot](https://cran.r-project.org/web/packages/txtplot/index.html) R package.
 
 First, let's graph the number of games released per year
 
