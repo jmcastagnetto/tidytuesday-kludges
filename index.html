@@ -5,13 +5,12 @@ title: My `#TidyTuesday` visualization kludges
 
 <div class="posts">
   {% for post in site.posts %}
-    <article class="post">
+    <article class="post" style="border: 1px dashed lightgrey; padding: 1em;">
       <h2><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h1>
       <div class="entry">
         {{ post.excerpt }}
       </div>
       <a href="{{ site.baseurl }}{{ post.url }}" class="read-more">Read More</a>
     </article>
-	<hr width="75%"/>
   {% endfor %}
 </div>
