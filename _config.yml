@@ -11,7 +11,7 @@ minima:
     rss: false
 header_pages:
   - index.md
-theme: jekyll-theme-minimal
+theme: jekyll-theme-time-machine
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
