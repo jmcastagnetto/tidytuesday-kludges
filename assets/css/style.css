@@ -1,0 +1,11 @@
+---
+---
+
+@import "{{ site.theme }}";
+
+article .post {
+	border-right: 1px dashed lightgrey; 
+	border-bottom: 1px dashed lightgrey; 
+	padding: 0.5em; 
+	margin: 0.5em;
+}
