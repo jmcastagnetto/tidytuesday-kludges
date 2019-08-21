@@ -11,7 +11,7 @@ minima:
     rss: false
 header_pages:
   - index.md
-theme: minima
+theme: hacker
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
