@@ -12,7 +12,7 @@ The visualizations here were made using the `#TidyTuesday` dataset of [nuclear e
 
 The following chart compares the cummulative yield (the sum, in Megatons, of all nuclear devices detonated) for each country from the 1940s to the 1990s.
 
-![Cummulative yield of nuclear explosions by country](/tidytuesday-kludges/assets/2019-08-20-nuclear-explosions/yield-by-country.png))
+![Cummulative yield of nuclear explosions by country](/tidytuesday-kludges/assets/2019-08-20-nuclear-explosions/yield-per-country.png))
 
 <!--more-->
 
