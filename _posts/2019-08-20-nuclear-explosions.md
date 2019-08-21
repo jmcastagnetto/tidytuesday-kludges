@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Chart, maps and globe showing nuclear explosions (1945-1998)
+title: Chart, map and globe showing nuclear explosions (1945-1998)
 categories: [tidytuesday, R]
 ---
 
