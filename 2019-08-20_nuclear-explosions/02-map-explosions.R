@@ -2,22 +2,22 @@ library(tidyverse)
 library(echarts4r)
 library(echarts4r.assets)
 
-load(here::here("data/sipri.Rdata"))
+load(here::here("2019-08-20_nuclear-explosions/sipri.Rdata"))
 
 sipri %>%
   filter(
-    !is.na(yield_u)
+    !is.na(r_therm)
   ) %>%
   mutate(
-    decade = (year %/% 10 ) * 10
+    diameter = 2 * r_therm
   ) %>%
-  arrange(decade) %>%
-  group_by(decade) %>%
+  arrange(year) %>%
+  group_by(year) %>%
   e_charts(longitude, timeline = TRUE, axisType = "value") %>%
   e_geo(roam = TRUE) %>%
   e_effect_scatter(
     latitude,
-    size = yield_u,
+    size = diameter,
     coord_system = "geo",
     symbol = ea_icons("crosshair"),
     rippleEffect = list(brushType = "fill"),
@@ -26,49 +26,32 @@ sipri %>%
   e_toolbox_feature(
     feature = c("saveAsImage", "restore")
   ) %>%
-  e_visual_map(scale = e_scale,
-               type = "continuous",
-               calculable = FALSE,
-               serie = yield_u) %>%
   e_theme("infographic") %>%
   e_rm_axis("x") %>% e_rm_axis("y") %>%
   e_title(
-    "Nuclear explosions over the years",
-    "Data: SIPRI, 2000 (@jmcastagnetto, Jesus M. Castagnetto)",
-    sublink = "https://github.com/data-is-plural/nuclear-explosions"
+    "Nuclear explosions over the years (Thermal range)",
+    "Source: SIPRI (1945-1998) / #TidyTuesday 2019-08-20 / @jmcastagnetto, Jesus M. Castagnetto",
+    sublink = "https://github.com/rfordatascience/tidytuesday/tree/master/data/2019/2019-08-20"
   )
-
-# sipri %>%
-#   filter(
-#     !is.na(yield_u)
-#   ) %>%
-#   mutate(
-#     ly = log10(yield_u + 1)
-#   ) %>%
-#   e_charts(longitude) %>%
-#   e_geo_3d() %>%
-#   e_bar_3d(
-#     latitude,
-#     ly,
-#     coord_system = "geo3D"
-#   )
-#
 
 sipri %>%
   filter(
-    !is.na(yield_u)
+    !is.na(r_blast)
   ) %>%
   mutate(
-    decade = (year %/% 10 ) * 10,
-    z = -100 * depth
+    z = -100 * depth,
+    diameter = 2 * r_blast
   ) %>%
-  group_by(decade) %>%
+  group_by(year) %>%
   e_charts(longitude) %>%
   e_rm_axis("x") %>%
   e_rm_axis("y") %>%
   e_globe(
     environment = ea_asset("starfield"),
-    base_texture = ea_asset("world"),
+    #base_texture = ea_asset("world"),
+    base_texture = ea_asset("world topo"),
+    height_texture = ea_asset("world topo"),
+    displacementScale = 0.05,
     layers = list(
       list(
         type = "overlay",
@@ -82,22 +65,19 @@ sipri %>%
   e_scatter_3d(
     latitude,
     z,
-    size = yield_u,
+    size = diameter,
     coord_system = "globe",
-    color = decade,
+    color = "red",
+    blendMode = "lighter",
     legend = FALSE,
-    animation = TRUE
+    animation = FALSE
   ) %>%
-  e_visual_map(
-               type = "continuous",
-               calculable = TRUE,
-               serie = yield_u) %>%
   e_theme("infographic") %>%
   e_toolbox_feature(
     feature = c("saveAsImage", "restore")
   ) %>%
   e_title(
-    "Nuclear explosions over the years",
-    "Data: SIPRI, 2000 (@jmcastagnetto, Jesus M. Castagnetto)",
-    sublink = "https://github.com/data-is-plural/nuclear-explosions"
+    "Nuclear explosions over the years (Blast range)",
+    "Source: SIPRI (1945-1998) / #TidyTuesday 2019-08-20 / @jmcastagnetto, Jesus M. Castagnetto",
+    sublink = "https://github.com/rfordatascience/tidytuesday/tree/master/data/2019/2019-08-20"
   )

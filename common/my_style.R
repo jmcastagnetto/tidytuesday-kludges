@@ -1,4 +1,4 @@
-jmcastagnetto_style <- function() {
+jmcastagnetto_style  <- function() {
   if (.Platform$OS.type == "unix") {
     font <- "URWGothic"
   } else {
@@ -13,7 +13,6 @@ jmcastagnetto_style <- function() {
     # Sub título, en itálicas
     plot.subtitle = ggplot2::element_text(family = font,
                                           size = 20,
-                                          face = "italic",
                                           color = "#000000",
                                           margin = ggplot2::margin(9,0,9,0)
                                           ),
@@ -48,7 +47,7 @@ jmcastagnetto_style <- function() {
     # Fondo del gráfico
     panel.background = ggplot2::element_blank(),
     # Fondo para los paneles múltiples
-    strip.background = ggplot2::element_rect(fill="peru"),
+    strip.background = ggplot2::element_rect(fill = rgb(205, 133, 63, alpha = 0.8 * 255, maxColorValue = 255)),  #color "peru",
     strip.text = ggplot2::element_text(size  = 18,  hjust = 0.5, face = "bold")
   )
 }
