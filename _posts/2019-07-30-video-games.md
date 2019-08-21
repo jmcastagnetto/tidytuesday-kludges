@@ -15,7 +15,7 @@ First, let's graph the number of games released per year
 
 Next, we can plot their Metascore distribution by price range:
 
-![Metascore by price range](/tidytuesday-kludges/assets/2019-07-30-video-games/txtplot-metascore-by-price-range.png) 
+![Metascore by price range](/tidytuesday-kludges/assets/2019-07-30-video-games/txtplot-metascore-price-range.png) 
 
 Finally, we will plot the price distribution, to find the pricing "sweet spots":
 
@@ -23,4 +23,4 @@ Finally, we will plot the price distribution, to find the pricing "sweet spots":
 
 As an added bonus, here is an animation of how game ownership has changed over the years, classified by price range:
 
-![Change in game ownership over the years](/tidytuesday-kludges/assets/2019-07-30-video-games/animaotion-points.gif)
+![Change in game ownership over the years](/tidytuesday-kludges/assets/2019-07-30-video-games/animation-points.gif)
