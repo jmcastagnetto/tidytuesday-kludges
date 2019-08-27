@@ -50,5 +50,5 @@ simpsons_raw <- rbind(df1, df2) %>%
 
 write_csv(
   simpsons_raw,
-  path = here::here("2019-08-27_simpsons-guests/simpsons-guests.csv")
+  path = here::here("2019-08-27_simpsons-guests/scrapped-simpsons-guests.csv")
 )
