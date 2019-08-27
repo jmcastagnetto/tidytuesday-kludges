@@ -33,7 +33,7 @@ simpsons_raw <- rbind(df1, df2) %>%
     guest_star = "Guest star",
     role = "Role(s)",
     number = "No.",
-    prod_code = "Prod. code",
+    production_code = "Prod. code",
     episode_title = "Episode title"
   ) %>%
   mutate(
@@ -51,9 +51,4 @@ simpsons_raw <- rbind(df1, df2) %>%
 write_csv(
   simpsons_raw,
   path = here::here("2019-08-27_simpsons-guests/simpsons-guests.csv")
-)
-
-save(
-  simpsons_raw,
-  file = here::here("2019-08-27_simpsons-guests/simpsons-guests.Rdata")
 )
