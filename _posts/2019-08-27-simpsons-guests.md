@@ -1,14 +1,16 @@
 ---
 layout: post
-title: The Simpons 7 degress of separation
+title: The Simpons 7 degrees of separation
 categories: [tidytuesday, R]
 ---
 
 [Source code](https://github.com/jmcastagnetto/tidytuesday-kludges/tree/master/2019-08-27_simpsons-guests)
 
+Used the [Simpons guest dataset](https://github.com/rfordatascience/tidytuesday/tree/master/data/2019/2019-08-27) from the [TidyTuesday](https://github.com/rfordatascience/tidytuesday/) project.
+
 First, I looked at the distribution of the number of unique guests per season, and overall
 
-![Overall guests distribution](/tidytuesday-kludges/assets/2019-08-27_simpsons-guests/guests-in-groups.png)
+![Overall guests distribution](/tidytuesday-kludges/assets/2019-08-27-simpsons-guests/guests-in-groups.png)
 
 ![Distribution of the number of guests over the seasons](/tidytuesday-kludges/assets/2019-08-27_simpsons-guests/tufte-boxplot.png)
 
@@ -16,7 +18,7 @@ First, I looked at the distribution of the number of unique guests per season, a
 
 Then, I grouped the guests by when they appear concurrently in an episode, and used `igraph` to try and cluster them in "communities"
 
-![Network of guests showing clusters](/tidytuesday-kludges/assets/2019-08-27_simpsons-guests/guests-network.png)
+![Network of guests showing clusters](/tidytuesday-kludges/assets/2019-08-27-simpsons-guests/guests-network.png)
 
 Using the network, found that the longest distance between two guests is 7, so is "The Simpsons 7 degrees of separation".
 
