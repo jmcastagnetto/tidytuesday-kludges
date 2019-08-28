@@ -1,5 +1,6 @@
 library(tidyverse)
 library(ggthemes)
+library(ggrepel)
 
 source("common/my_style.R")
 source("common/build_plot.R")
@@ -25,6 +26,12 @@ guests_episode <- shows %>%
   group_by(season, episode_title) %>%
   summarise(
     n_guests = n_distinct(guest_star)
+  ) %>%
+  mutate(
+    label = ifelse(n_guests >= 10,
+                   glue::glue("{episode}: {n} guests",
+                              episode=episode_title, n=n_guests),
+                   "")
   )
 
 p1 <- ggplot(guests_episode, aes(x = season, y = n_guests, color = season)) +
@@ -39,13 +46,8 @@ p1 <- ggplot(guests_episode, aes(x = season, y = n_guests, color = season)) +
     y = ""
   ) +
   annotate("point", x = 28, y = 13, color = "black", size = 5, stroke = 2, shape = 21) +
-  annotate("label", x = 29.5, y = 14, hjust = 1,
-           size = 5, fill = "lightyellow",
-           label = "Maximum number of guests = 13") +
-  # geom_segment(aes(x = 26.5, y = 12.5, xend = 27.9, yend = 13),
-  #               size = .3, color = "grey70",
-  #               arrow = arrow(ends = "last", type = "closed",
-  #                             length = unit(.01, "npc"))) +
+  geom_text_repel(aes(label = label), direction = "both",
+                  nudge_x = -1, show.legend = FALSE) +
   coord_flip() +
   jmcastagnetto_style()
 

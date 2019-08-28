@@ -69,24 +69,15 @@ V(ug)$color = cl$membership
 
 set.seed(20190827)
 
-# estimate node distanceswrite_graph(ug,
-file = here::here("2019-08-27_simpsons-guests/guests-network.graphml"),
+# estimate node distances
+write_graph(
+  ug,
+  file = here::here("2019-08-27_simpsons-guests/guests-network.graphml")
+)
 
 d <- distances(ug)
 # get the maximum distance
 diameter(ug)
-
-# dist_nodes <- as_tibble(
-#   d,
-#   name_repair = "minimal",
-#   rownames = "From"
-# ) %>%
-#   pivot_longer(
-#     cols = 2:ncol(.)
-#   ) %>%
-#   filter(
-#     value > 0 & value != Inf
-#   )
 
 plot(cl, ug, layout=layout_nicely,
      main = "The Simpsons 7 degrees of separation",
@@ -97,20 +88,45 @@ write_graph(ug,
             file = here::here("2019-08-27_simpsons-guests/guests-network.graphml"),
             format = "graphml")
 
+# A plot of the frecuency of inter-guests distances
+dist_nodes <- as_tibble(
+  d,
+  name_repair = "minimal",
+  rownames = "From"
+) %>%
+  pivot_longer(
+    cols = 2:ncol(.)
+  ) %>%
+  filter(
+    value > 0 & value != Inf
+  ) %>%
+  group_by(value) %>%
+  summarise(
+    freq = n()
+  ) %>%
+  mutate(
+    label = format(freq, big.mark=",")
+  )
 
-# A plot of the
-p1 <- ggplot(dist_nodes, aes(x = value)) +
-  geom_bar() +
+p1 <- ggplot(dist_nodes, aes(x = as.factor(value), y=freq,
+                             label=label, fill = as.factor(freq))) +
+  geom_col(show.legend = FALSE) +
+  geom_text_repel(nudge_y = 1000,
+                  show.legend = FALSE, color = "black") +
+  scale_fill_viridis_d(option = "plasma") +
   labs(
-    title = "The Simpsons like guests in groups of three",
+    title = "The Simpsons guests are usually 3 steps apart",
     subtitle = "#TidyTuesday, 2019-08-27",
-    x = "Number of guests",
-    y = "Frequency"
+    x = "Distance between guests",
+    y = "Number of pairs\nwith a given distance"
   ) +
-  jmcastagnetto_style()
+  jmcastagnetto_style() +
+  theme(axis.text.y = element_blank())
 
 pf1 <- build_plot(p1)
 pf1
+
+ggsave()
 
 # create a visNetwork from igraph
 vn_data <- toVisNetworkData(ug)
