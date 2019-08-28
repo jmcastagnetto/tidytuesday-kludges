@@ -12,7 +12,7 @@ First, I looked at the distribution of the number of unique guests per season, a
 
 ![Overall guests distribution](/tidytuesday-kludges/assets/2019-08-27-simpsons-guests/guests-in-groups.png)
 
-![Distribution of the number of guests over the seasons](/tidytuesday-kludges/assets/2019-08-27_simpsons-guests/tufte-boxplot.png)
+![Distribution of the number of guests over the seasons](/tidytuesday-kludges/assets/2019-08-27-simpsons-guests/tufte-boxplot.png)
 
 ## A newtwork of guests
 
