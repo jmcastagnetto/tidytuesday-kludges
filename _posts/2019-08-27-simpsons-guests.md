@@ -8,11 +8,7 @@ categories: [tidytuesday, R]
 
 Used the [Simpons guest dataset](https://github.com/rfordatascience/tidytuesday/tree/master/data/2019/2019-08-27) from the [TidyTuesday](https://github.com/rfordatascience/tidytuesday/) project.
 
-First, I looked at the distribution of the number of *unique guests* per season and episode, and overall seems like in "The Simpsons" they like to have guests in small group: 2 to 4 at a time, with 3 being the most frequent number:
-
-![Overall guests distribution](/tidytuesday-kludges/assets/2019-08-27-simpsons-guests/guests-in-groups.png)
-
-And that is pretty consistent over the seasons, with one episode ("The Great Phatsby", Season 28) where there were 13 guests. There were two more episodes with 10 or more guests: "Moonshine River" (Season 24, 11 guests) and "Homer at the Bat" (Season 3, 10 guests)
+First, I looked at the distribution of the number of *unique guests* per season and episode, and overall seems like in "The Simpsons" they like to have guests in small groups, although occasionally the groups can be bigger. This is pretty consistent over the seasons, with one episode ("The Great Phatsby", Season 28) where there were 13 guests. There were two more episodes with 10 or more guests: "Moonshine River" (Season 24, 11 guests) and "Homer at the Bat" (Season 3, 10 guests)
 
 ![Distribution of the number of guests over the seasons](/tidytuesday-kludges/assets/2019-08-27-simpsons-guests/tufte-boxplot.png)
 
@@ -22,7 +18,10 @@ Then, I grouped the guests by when they appear concurrently in an episode, and u
 
 ![Network of guests showing clusters](/tidytuesday-kludges/assets/2019-08-27-simpsons-guests/guests-network.png)
 
-Using the network, found that the longest distance between two guests is 7, so is "The Simpsons 7 degrees of separation".
+Using the network, found that the longest distance between two guests is 7, so is "The Simpsons 7 degrees of separation". But the most frequent distance is 3, and a great majority are related by 2 to 4 steps.
+
+![Overall distribution of distances between guests](/tidytuesday-kludges/assets/2019-08-27-simpsons-guests/guests-in-groups.png)
+
 
 Made the network into an interactive graph using [visNetwork](https://datastorm-open.github.io/visNetwork/). You can use the dropdown to pick a guest, "Marcia Wallace" is important in this network, because she has a lot of connections to other guests.
 
