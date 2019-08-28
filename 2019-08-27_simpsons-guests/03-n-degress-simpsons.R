@@ -3,6 +3,9 @@ library(igraph)
 library(visNetwork)
 library(networkD3)
 
+source("common/my_style.R")
+source("common/build_plot.R")
+
 load(
   here::here("2019-08-27_simpsons-guests/simpsons-guests.Rdata")
 )
@@ -57,7 +60,6 @@ edges <- episodes_2plus %>%
   distinct()
 
 # generate network graph
-
 ug <- graph_from_data_frame(edges, vertices = nodes, directed = FALSE)
 
 # find the clusters of nodes
@@ -67,32 +69,54 @@ V(ug)$color = cl$membership
 
 set.seed(20190827)
 
-plot(cl, ug, layout=layout_nicely, vertex.size = 0.5, vertex.label = "")
+# estimate node distanceswrite_graph(ug,
+file = here::here("2019-08-27_simpsons-guests/guests-network.graphml"),
 
-# estimate node distances
 d <- distances(ug)
 # get the maximum distance
 diameter(ug)
 
-dist_nodes <- as_tibble(
-  d,
-  name_repair = "minimal",
-  rownames = "From"
-) %>%
-  pivot_longer(
-    cols = 2:ncol(.)
-  ) %>%
-  filter(
-    value > 0 & value != Inf
-  )
+# dist_nodes <- as_tibble(
+#   d,
+#   name_repair = "minimal",
+#   rownames = "From"
+# ) %>%
+#   pivot_longer(
+#     cols = 2:ncol(.)
+#   ) %>%
+#   filter(
+#     value > 0 & value != Inf
+#   )
 
-ggplot(dist_nodes, aes(x = value)) +
-  geom_bar()
+plot(cl, ug, layout=layout_nicely,
+     main = "The Simpsons 7 degrees of separation",
+     sub = "#TidyTuesday, 2019-08-27 / @jmcastagnetto",
+     vertex.size = 0.5, vertex.label = "")
 
+write_graph(ug,
+            file = here::here("2019-08-27_simpsons-guests/guests-network.graphml"),
+            format = "graphml")
+
+
+# A plot of the
+p1 <- ggplot(dist_nodes, aes(x = value)) +
+  geom_bar() +
+  labs(
+    title = "The Simpsons like guests in groups of three",
+    subtitle = "#TidyTuesday, 2019-08-27",
+    x = "Number of guests",
+    y = "Frequency"
+  ) +
+  jmcastagnetto_style()
+
+pf1 <- build_plot(p1)
 
 # create a visNetwork from igraph
-
-vn <- visIgraph(ug) %>%
+vn_data <- toVisNetworkData(ug)
+vn <- visNetwork(nodes = vn_data$nodes, edges = vn_data$edges,
+                 main = "A network view of \"The Simpsons\" guests",
+                 submain = "The longest distance between guest is 7 / #TidyTuesday, 2019-08-27 / @jmcastagnetto, Jesus M. Castagnetto") %>%
+  visIgraphLayout() %>%
   visOptions(
     highlightNearest = list(enabled = TRUE, hover = TRUE),
     nodesIdSelection = TRUE
