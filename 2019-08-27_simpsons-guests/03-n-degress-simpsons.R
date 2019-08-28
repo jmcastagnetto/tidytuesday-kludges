@@ -110,6 +110,7 @@ p1 <- ggplot(dist_nodes, aes(x = value)) +
   jmcastagnetto_style()
 
 pf1 <- build_plot(p1)
+pf1
 
 # create a visNetwork from igraph
 vn_data <- toVisNetworkData(ug)
