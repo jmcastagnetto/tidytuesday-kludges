@@ -8,9 +8,11 @@ categories: [tidytuesday, R]
 
 Used the [Simpons guest dataset](https://github.com/rfordatascience/tidytuesday/tree/master/data/2019/2019-08-27) from the [TidyTuesday](https://github.com/rfordatascience/tidytuesday/) project.
 
-First, I looked at the distribution of the number of unique guests per season, and overall
+First, I looked at the distribution of the number of unique guests per season, and overall seems like in "The Simpsons" they like to have guests in small group: 2 to 4 at a time, with 3 being the most frequent number:
 
 ![Overall guests distribution](/tidytuesday-kludges/assets/2019-08-27-simpsons-guests/guests-in-groups.png)
+
+And that is pretty consistent over the seasons, with some extreme cases where there were 13 guests
 
 ![Distribution of the number of guests over the seasons](/tidytuesday-kludges/assets/2019-08-27-simpsons-guests/tufte-boxplot.png)
 
