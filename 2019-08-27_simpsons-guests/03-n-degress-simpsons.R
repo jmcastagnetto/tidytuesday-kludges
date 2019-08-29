@@ -126,7 +126,10 @@ p1 <- ggplot(dist_nodes, aes(x = as.factor(value), y=freq,
 pf1 <- build_plot(p1)
 pf1
 
-ggsave()
+ggsave(
+  plot = pf1,
+  filename = here::here("2019-08-27_simpsons-guests/guests-in-groups.png")
+)
 
 # create a visNetwork from igraph
 vn_data <- toVisNetworkData(ug)
