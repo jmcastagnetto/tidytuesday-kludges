@@ -10,16 +10,16 @@ load(
 
 # --- main plot --
 
-p1 <- ggplot(cpu, aes(x = decade, y = transistor_count)) +
+p1 <- ggplot(ram, aes(x = decade, y = transistor_count)) +
   geom_pirate(aes(color = decade, fill = decade),
               bars_params = list(width = 0.1)) +
   scale_y_log10() +
   annotation_logticks(sides = "l", color = "white") +
   labs(
-    title = "CPU transistor count distribution over the decades",
+    title = "RAM transistor count distribution over the decades",
     subtitle = "Moore's Law dataset / #TidyTuesday 2019-09-03 ",
     y = "Transistor count",
-    x = "Decade when the CPU was introduced",
+    x = "Decade when the RAM was introduced",
     caption = "@jmcastagnetto, Jesus M. Castagnetto"
   ) +
   dark_theme_bw() +
@@ -35,7 +35,7 @@ p1 <- ggplot(cpu, aes(x = decade, y = transistor_count)) +
 
 # --- inset plot ---
 
-inset_df <- cpu %>%
+inset_df <- ram %>%
   group_by(decade) %>%
   summarise(
     m = median(transistor_count, na.rm = TRUE),
@@ -59,7 +59,7 @@ p2 <- ggplot(inset_df, aes(x = drange)) +
             color = "white",
             size = 3)+
   annotate(
-    "text", x = 1, y = 1.5e+8, hjust = 0,
+    "text", x = 0.7, y = 1.5e+8, hjust = 0,
     label = "Difference in median\ntransistor counts\nbetween decades"
   ) +
   scale_y_log10() +
@@ -71,7 +71,7 @@ p2 <- ggplot(inset_df, aes(x = drange)) +
   dark_theme_minimal() +
   theme(
     legend.position = "none",
-    panel.border = element_blank(),p12 <- ggdraw(p1) +
+    panel.border = element_blank(),
     panel.background = element_blank(),
     axis.line = element_blank(),
     axis.text.y = element_blank()
@@ -80,12 +80,11 @@ p2 <- ggplot(inset_df, aes(x = drange)) +
 # --- compose plots ---
 
 p12 <- ggdraw(p1) +
-  draw_plot(p2, .12, .6, .34, .3)
+  draw_plot(p2, .1, .7, .3, .2)
 
 # --- save using ragg device --
-
 ggsave(
-  filename = here::here("2019-09-03_moores-law/cpu-decades-plot.png"),
+  filename = here::here("2019-09-03_moores-law/ram-decades-plot.png"),
   plot = p12,
   width = 14,
   height = 9,
