@@ -38,7 +38,7 @@ mk_plot <- function(df, item, title = FALSE) {
     geom_linerange(aes(ymin = 2, ymax = size_ratio), color = "red") +
     geom_hline(yintercept = 2) +
     labs(
-      title = ifelse(title, "Checking Moore's Law [size(t+2) = 2*size(t)]", ""),
+      title = ifelse(title, "Checking Moore's Law [size(t+2) ≅ 2*size(t)]", ""),
       subtitle = glue::glue("Using the average transistor sizes for {item} -- MAE = {sprintf('%.3f', mae)}, MSE = {sprintf('%.3f', mse)}",
                             item = item, mae = mae, mse = mse),
       x = "",
