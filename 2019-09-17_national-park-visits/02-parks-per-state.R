@@ -1,20 +1,24 @@
 library(tidyverse)
 library(gganimate)
-library(extrafont)
+library(showtext)
 
 load(
   here::here("2019-09-17_national-park-visits/park-visits.Rdata")
 )
+
+font_add("Elegante", regular = "elegbold.ttf")
+font_add("Inconsolata", regular = "Inconsolata for Powerline.otf")
+
+showtext_auto()
 
 df_rank <- df %>%
   filter(!is.na(year)) %>%
   arrange(year, state) %>%
   group_by(year) %>%
   mutate(
-    rank = rank(-n_parks, ties.method = "first"),
-    year = as.integer(year)
+    rank = rank(-n_parks, ties.method = "first")
   ) %>%
-  filter(rank <= 10) %>%  # top 10 states by number of parks per year
+  filter(rank <= 10) %>%  # top ranked states by number of parks per year
   ungroup()
 
 # code blatantly stolen from: https://towardsdatascience.com/create-animated-bar-charts-using-r-31d09e5841da
@@ -34,28 +38,34 @@ static <- ggplot(df_rank, aes(rank, group = state,
   theme(
     panel.grid.major.x = element_line(size=.1, color="grey"),
     panel.grid.minor.x = element_line(size=.1, color="grey"),
-    plot.title = element_text(family = "Century", size=22),
-    plot.subtitle = element_text(size=16, face="italic"),
-    plot.caption = element_text(family = "Inconsolata", size=10),
+    plot.title = element_text(family = "Elegante", size=16),
+    plot.caption = element_text(family = "Inconsolata", size= 12),
     plot.margin = unit(rep(1.5, 4), "cm")
   )
 
 anim_plot <- static +
   labs(
-    title = "Top 10 States by number of parks ({closest_state})",
-    subtitle = "#TidyTuesday, 2019-09-17: National Park Visits dataset",
-    caption = "@jmcastagnetto, Jesus M. Castagnetto"
+    title = "Top States by number of parks ({closest_state})",
+    caption = "#TidyTuesday, 2019-09-17: National Park Visits dataset\n@jmcastagnetto, Jesus M. Castagnetto"
   ) +
   transition_states(year,
                     transition_length = 10) +
-  view_follow(fixed_x = TRUE)
+  view_follow(fixed_x = TRUE) +
+  enter_grow() +
+  exit_shrink()
 
-animate(anim_plot,
-        nframes = 113*10,
-        fps = 10 ,
-        renderer = gifski_renderer(
-          file = here::here("2019-09-17_national-park-visits/top10_numparks_yr.gif"),
-          width = 1600,
-          height = 1200
-        ))
+n_yrs <- length(unique(df_rank$year))
+
+anim_gif <- animate(
+  anim_plot,
+  nframes = n_yrs*10,
+  fps = 10,
+  width = 500,
+  height = 500
+)
+
+anim_save(
+  animation = anim_gif,
+  filename = here::here("2019-09-17_national-park-visits/top10_numparks_yr.gif")
+)
 
