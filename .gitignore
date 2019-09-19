@@ -46,3 +46,4 @@ vignettes/*.pdf
 # End of https://www.gitignore.io/api/R
 
 2019-07-23_bird-impacts/data/wildlife.zip
+.Rproj.user
