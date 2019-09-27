@@ -16,6 +16,7 @@ school_diversity <- read_csv("https://raw.githubusercontent.com/rfordatascience/
     stname = ifelse(is.na(stname), "DC", stname),
     div = ifelse(is.na(div), "Middle Atlantic", div),
     reg = ifelse(is.na(reg), "South", reg),
+    multi = ifelse(is.na(multi), 0, multi)
   ) %>%
   mutate_at(
     vars(st, d_locale_txt, diverse, int_group,
