@@ -1,3 +1,5 @@
+# Not used, the resultas are not too informative
+
 library(tidyverse)
 load(
   here::here("2019-09-24_school-diversity/school_diversity.Rdata")
