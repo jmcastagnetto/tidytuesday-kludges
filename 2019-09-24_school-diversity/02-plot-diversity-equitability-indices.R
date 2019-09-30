@@ -1,7 +1,6 @@
 library(tidyverse)
 library(ggpmisc)
 
-
 load(
   here::here("2019-09-24_school-diversity/school_diversity.Rdata")
 )
@@ -60,8 +59,8 @@ ggplot(simpson_df,
   scale_x_continuous(labels = scales::percent_format(1)) +
   expand_limits(x = c(0, 1), y = c(0, 1)) +
   labs(
-    x = "D for 1995-1995",
-    y = "D for 2016-2017",
+    x = "Diversity Index (1994-1995)",
+    y = "Diversity Index (2016-2017)",
     title = "Changes in the Simpson Diversity Index (D) for USA School Districts",
     subtitle = bquote(
       "#TidyTuesday, dataset: 2019-09-24 —" ~ D == sum(p[i] *(1 - p[i]))
@@ -108,7 +107,7 @@ ggplot(shannon_df,
                        show.legend = FALSE, color = "blue") +
   expand_limits(x = c(0, 1), y = c(0, 1)) +
   labs(
-    x = "Equitability Index (1995-1995)",
+    x = "Equitability Index (1994-1995)",
     y = "Equitability Index (2016-2017)",
     title = bquote(
       "Changes in the Shannon Equitability Index (" ~ E[H] ~ ")  for USA School Districts"
