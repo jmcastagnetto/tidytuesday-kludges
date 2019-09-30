@@ -1,11 +1,15 @@
 library(tidyverse)
 
 pizza_jared <- readr::read_csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2019/2019-10-01/pizza_jared.csv")
+
 pizza_barstool <- readr::read_csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2019/2019-10-01/pizza_barstool.csv")
+
 pizza_datafiniti <- readr::read_csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2019/2019-10-01/pizza_datafiniti.csv") %>%
   mutate(
     price_range = paste(price_range_min, price_range_max, sep = "-")
-  )
+  ) %>%
+  arrange(name) %>%
+  distinct()
 
 pizza_datafiniti <- pizza_datafiniti %>%
   rowwise() %>%
@@ -15,8 +19,7 @@ pizza_datafiniti <- pizza_datafiniti %>%
   ) %>%
   select(
     -cat_vector
-  ) %>%
-  distinct()
+  )
 
 pizza_locations <- bind_rows(
   pizza_barstool %>%
@@ -32,6 +35,3 @@ save(
   pizza_locations, pizza_jared, pizza_barstool, pizza_datafiniti,
   file = here::here("2019-10-01_all-the-pizza/all_the_piza.Rdata")
 )
-
-ggplot(pizza_locations, aes(x = latitude, y = longitude)) +
-  geom_point()
