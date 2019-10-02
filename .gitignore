@@ -47,3 +47,5 @@ vignettes/*.pdf
 
 2019-07-23_bird-impacts/data/wildlife.zip
 .Rproj.user
+
+common/*.yaml
