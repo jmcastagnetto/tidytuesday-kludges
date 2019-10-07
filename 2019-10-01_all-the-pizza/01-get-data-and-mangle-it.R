@@ -24,7 +24,8 @@ api_keys <- read_yaml(
 register_google(key = api_keys$google)
 
 coords <- geocode(
-  unkown_geoloc, output = "latlona", source = "google"
+  paste0(unkown_geoloc, ", New York"),
+  output = "latlona", source = "google"
 )
 
 jared_uniq_df <- bind_cols(
@@ -57,7 +58,11 @@ pizza_datafiniti <- pizza_datafiniti %>%
 
 pizza_barstool <- pizza_barstool %>%
   mutate(
-    state = zipcode[zip, "state"]
+    zip = as.character(zip)
+  ) %>%
+  left_join(
+    zipcode %>% select(zip, state),
+    by = "zip"
   )
 
 pizza_locations <- bind_rows(
@@ -66,14 +71,12 @@ pizza_locations <- bind_rows(
       longitude = lon,
       latitude = lat
     ) %>%
-    mutate(only_pizza = 1) %>%
-    select(name, longitude, latitude, state, only_pizza),
+    select(name, longitude, latitude, state),
   pizza_barstool %>%
     select(name, longitude, latitude, state) %>%
-    distinct() %>%
-    mutate(only_pizza = 1),
+    distinct(),
   pizza_datafiniti %>%
-    select(name, longitude, latitude, state, only_pizza)
+    select(name, longitude, latitude, state)
 ) %>%
   arrange(name, longitude, latitude) %>%
   filter(!is.na(latitude) | !is.na(longitude)) %>%
