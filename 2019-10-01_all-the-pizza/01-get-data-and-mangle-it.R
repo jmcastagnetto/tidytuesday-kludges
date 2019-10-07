@@ -71,18 +71,114 @@ pizza_locations <- bind_rows(
       longitude = lon,
       latitude = lat
     ) %>%
-    select(name, longitude, latitude, state),
+    select(name, longitude, latitude, state) %>%
+    mutate(
+      price_range = NA
+    ),
   pizza_barstool %>%
     select(name, longitude, latitude, state) %>%
-    distinct(),
+    distinct() %>%
+    mutate(
+      price_range = NA
+    ),
   pizza_datafiniti %>%
-    select(name, longitude, latitude, state)
+    select(name, longitude, latitude, state, price_range)
 ) %>%
   arrange(name, longitude, latitude) %>%
   filter(!is.na(latitude) | !is.na(longitude)) %>%
   distinct()
 
+# jared likert 1-6 to a median value
+jared_answers <- tibble(
+  answer = fct_inorder(
+    c("Never Again", "Poor", "Fair", "Average", "Good", "Excellent"),
+    ordered = TRUE
+  ),
+  value = 1:6
+)
+
+likert_median <- function(answer, votes) {
+  resp <- tibble(
+    answer = answer,
+    votes = votes
+  ) %>%
+    group_by(answer) %>%
+    summarise(
+      tvotes = sum(votes)
+    ) %>%
+    ungroup()
+
+  df <- tibble(
+    answer = fct_inorder(
+      c("Never Again", "Poor", "Fair", "Average", "Good", "Excellent"),
+      ordered = TRUE
+    ),
+    value = 1:6
+  ) %>%
+    left_join(
+      resp,
+      by = "answer"
+    ) %>%
+    mutate(
+      tvotes = replace_na(tvotes, 0)
+    )
+  vect <- rep(df$value, df$tvotes)
+  median(vect)
+}
+
+summary_jared <- pizza_jared %>%
+  group_by(place) %>%
+  summarise(
+    jared_median = likert_median(answer, votes),
+    jared_score = round(10 * jared_median / 6, 2), # map to scale 1-10
+    jared_nvotes = sum(votes, na.rm = TRUE)
+  ) %>%
+  ungroup() %>%
+  arrange(desc(jared_nvotes)) %>%
+  filter(!is.na(jared_score))
+
+# barstool
+# scale 1-10
+summary_barstool <- pizza_barstool %>%
+  select(name, review_stats_all_average_score, review_stats_all_count) %>%
+  rename(
+    barstool_score = review_stats_all_average_score,
+    barstool_nvotes = review_stats_all_count
+  ) %>%
+  mutate(
+    barstool_score = round(barstool_score, 2)
+  )
+
+rated_pizza_locations <- pizza_locations %>%
+  left_join(
+    summary_jared %>%
+      select(place, jared_score, jared_nvotes) %>%
+      filter(jared_nvotes >= 10), # at least 10 reviews
+    by = c("name" = "place")
+  ) %>%
+  mutate( # restrict only to stores in NY for jared's data
+    jared_score = ifelse(state == "NY", jared_score, NA),
+    jared_nvotes = ifelse(state == "NY", jared_nvotes, NA),
+  ) %>%
+  left_join(
+    summary_barstool %>%
+      filter(barstool_nvotes >= 10),
+    by = "name"
+  ) %>%
+  rowwise() %>%
+  mutate(
+    has_scores = sum(!is.na(jared_score), !is.na(barstool_score))
+  )
+
+table(rated_pizza_locations$has_scores)
+
+# percentage of geolocated shops with ratings
+100 * nrow(rated_pizza_locations %>% filter(has_scores >= 1)) / nrow(rated_pizza_locations)
+# [1] 10.10391
+
+
 save(
-  pizza_locations, pizza_jared, pizza_barstool, pizza_datafiniti,
+  rated_pizza_locations, pizza_locations,
+  pizza_jared, pizza_barstool, pizza_datafiniti,
   file = here::here("2019-10-01_all-the-pizza/all_the_piza.Rdata")
 )
