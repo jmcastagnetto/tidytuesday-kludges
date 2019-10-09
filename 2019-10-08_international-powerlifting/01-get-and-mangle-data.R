@@ -19,7 +19,7 @@ athlete_trajectory <- ipf_lifts_proc %>%
   ) %>%
   pivot_longer(
     cols = c(Squat, Bench, Deadlift),
-    names_to = "weight_event",
+    names_to = "weightlifting_type",
     values_to = "weight_lifted"
   ) %>%
   mutate(
@@ -30,9 +30,12 @@ athlete_trajectory <- ipf_lifts_proc %>%
       n >= 30 & n < 40 ~ "30 <= events < 40",
       n >= 40 ~ "events >= 40"
     ) %>%
-      fct_inorder(ordered = TRUE)
+      fct_inorder(ordered = TRUE),
+    sex = ifelse(sex == "F", "Female", "Male")
   ) %>%
-  filter(!is.na(age))
+  filter(!is.na(age)) %>%
+  filter(!is.na(weight_lifted)) %>%
+  filter(weight_lifted > 0)
 
 save(
   ipf_lifts, ipf_lifts_proc, athlete_trajectory,
