@@ -1,0 +1,1 @@
+The dataset used in these plots comes from the TidyTuesday repo at: https://github.com/rfordatascience/tidytuesday/tree/master/data/2019/2019-10-15, and originally from the [EPA](https://openpowerlifting.org/data). The full data dictionary can be found at [fueleconomy.gov](https://www.fueleconomy.gov/feg/ws/index.shtml#fuelType1).
