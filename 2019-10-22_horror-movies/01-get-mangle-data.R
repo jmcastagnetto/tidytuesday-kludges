@@ -54,5 +54,5 @@ horror_movies_genre <- horror_movies %>%
 
 save(
   horror_movies, horror_movies_actor, horror_movies_genre,
-  file = here::here("2019-10-22_horror-movies/horro-movies.Rdata")
+  file = here::here("2019-10-22_horror-movies/horror-movies.Rdata")
 )

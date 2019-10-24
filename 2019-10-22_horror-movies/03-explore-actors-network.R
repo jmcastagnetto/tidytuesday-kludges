@@ -82,9 +82,34 @@ clsns_actors <- tibble(
 #  pgrank = V(net)$pgrank
 #)
 
+load(
+  here::here("2019-10-22_horror-movies/pagerank.Rdata")
+)
+
+V(net)$pgrank = pgrank[[1]]
+
+pgrank_actors <- tibble(
+  id = V(net)$id,
+  actor = V(net)$name,
+  pgrank = V(net)$pgrank
+)
+
 save(
   cliq, cl, net, connected_actors, btwn_actors,
-  clsns_actors, edge_btwns, 
-  #pgrank_actors,
+  clsns_actors, edge_btwns,
+  pgrank_actors,
   file = here::here("2019-10-22_horror-movies/actors-network-metrics.Rdata")
+)
+
+write_graph(
+  net,
+  file = here::here("2019-10-22_horror-movies/horror-movies-actors-network.graphml"),
+  format = "graphml"
+)
+
+
+write_graph(
+  net,
+  file = here::here("2019-10-22_horror-movies/horror-movies-actors-network.dot"),
+  format = "dot"
 )

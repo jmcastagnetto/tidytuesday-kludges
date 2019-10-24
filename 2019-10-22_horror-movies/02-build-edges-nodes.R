@@ -2,7 +2,7 @@ library(tidyverse)
 library(igraph)
 
 load(
-  here::here("2019-10-22_horror-movies/horro-movies.Rdata")
+  here::here("2019-10-22_horror-movies/horror-movies.Rdata")
 )
 
 nodes <- horror_movies_actor %>%
