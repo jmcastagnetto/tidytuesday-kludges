@@ -10,7 +10,8 @@ nodes <- horror_movies_actor %>%
   distinct() %>%
   mutate(id = labels(actor)) %>%
   filter(!is.na(actor)) %>%
-  select(actor, id)
+  select(actor, id) %>%
+  arrange(actor)
 
 edges <- horror_movies_actor %>%
   group_by(title) %>%
