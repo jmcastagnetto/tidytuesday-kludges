@@ -131,15 +131,26 @@ pgrank_actors <- tibble(
  pgrank_grp_lbl = V(net)$pgrank_grp_lbl
 )
 
-save(
-    nodes, edges, net,
-    file = here::here("2019-10-22_horror-movies/actors-network.Rdata")
-)
+# clusters
+cl <- components(net)
+V(net)$cluster = cl$membership
+cl_df <- as.data.frame(table(cl$membership)) %>%
+  rename(
+    cluster = 1,
+    qty = 2
+  ) %>%
+  arrange(desc(qty)) %>%
+  mutate(
+    csum = cumsum(qty),
+    cpct = csum / sum(qty)
+  )
+
 
 save(
+  nodes, edges, net,
   net, connected_actors, btwn_actors,
   clsns_actors, edge_btwns,
-  pgrank_actors,
+  pgrank_actors, cl_df,
   file = here::here("2019-10-22_horror-movies/actors-network-metrics.Rdata")
 )
 
@@ -148,10 +159,3 @@ write_graph(
   file = here::here("2019-10-22_horror-movies/horror-movies-actors-network.graphml"),
   format = "graphml"
 )
-
-write_graph(
-  net,
-  file = here::here("2019-10-22_horror-movies/horror-movies-actors-network.dot"),
-  format = "dot"
-)
-
