@@ -31,3 +31,9 @@ diameter(net)
 
 cl <- components(net)
 V(net)$cluster = cl$membership
+cl_df <- as.data.frame(table(cl$membership)) %>%
+  rename(
+    cluster = 1,
+    qty = 2
+  ) %>%
+  arrange(desc(qty))
