@@ -1,9 +1,84 @@
 library(tidyverse)
 library(igraph)
 library(ggraph)
+library(ggdark)
+library(showtext)
+
+font_add_google("Lakki Reddy", "lred")
+font_add_google("Amita", "amita")
+showtext_auto()
 
 load(
   here::here("2019-10-22_horror-movies/actors-network-metrics.Rdata")
+)
+
+vertex_attr_names(net)
+edge_attr_names(net)
+
+V(net)$pgrank_scaled <- V(net)$pgrank / max(V(net)$pgrank)
+
+top_nodes_pgrank <- ego(
+  graph = net,
+  order = 1,
+  nodes = (V(net)$pgrank_scaled >= 0.3),
+  mode = "all"
+) %>%
+  unlist() %>%
+  unique()
+
+top_nodes_graph <- induced_subgraph(
+  graph = net,
+  vids = top_nodes_pgrank,
+  impl = "auto"
+)
+
+V(top_nodes_graph)$label <- ifelse(
+  V(top_nodes_graph)$pgrank_scaled > 0.5,
+  V(top_nodes_graph)$name,
+  ""
+)
+
+# plot(
+#   top_nodes_graph,
+#   edge.arrow.size = 0,
+#   edge.label = NA,
+#   vertex.label = NA,
+#   vertex.size = V(top_nodes_graph)$pgrank_scaled * 10,
+#   vertex.color = V(top_nodes_graph)$pgrank_grp
+# )
+
+p1 <- ggraph(top_nodes_graph, layout = "igraph", algorithm = "nicely") +
+  geom_edge_arc(alpha = 0.3, color = "yellow") +
+  geom_node_point(aes(size = pgrank_scaled * 5,
+                      color = pgrank_scaled * 5),
+                  show.legend = FALSE) +
+  geom_node_text(aes(label = label), size = 10) +
+  labs(
+    title = "The invasion of the connected actors!!!",
+    subtitle = "Actors scored by PageRank (shown ~1000), top 10 shown.",
+    caption = "#TidyTuesday, 2019-10-22 -- Horror movies dataset //  @jmcastagnetto, Jesus M. Castagnetto"
+  ) +
+  dark_theme_minimal() +
+  theme(
+    plot.title = element_text(family = "lred", size = 64),
+    plot.subtitle = element_text(family = "lred", size = 42),
+    plot.caption = element_text(family = "amita", size = 28),
+    plot.margin = unit(rep(1, 4), "cm"),
+    panel.grid = element_blank(),
+    axis.line = element_blank(),
+    axis.text = element_blank(),
+    axis.title = element_blank()
+  )
+p1
+ggsave(
+  filename = here::here("2019-10-22_horror-movies/topconnectedactors.png"),
+  width = 6,
+  height = 6
+)
+
+save(
+  p1,
+  file = here::here("2019-10-22_horror-movies/networkplot.Rdata")
 )
 
 # centrality of the network
@@ -23,89 +98,9 @@ load(
 # diameter(net)
 # > diameter(net)
 # [1] 96
-
-vertex_attr_names(net)
-edge_attr_names(net)
-
-# plot(net, edge.arrow.size = 0, edge.label = NA,
-#      vertex.label = NA, vertex.size = 1)
-
-actors <- tibble(
-  id = V(net)$id,
-  actor = V(net)$name,
-  indeg = V(net)$indeg,
-  indeg_grp_lbl = V(net)$indeg_grp_lbl,
-  btwn = V(net)$btwn,
-  btwn_grp_lbl = V(net)$btwn_grp_lbl,
-  clsns = V(net)$clsns,
-  clsns_grp_lbl = V(net)$clsns_grp_lbl,
-  pgrank = V(net)$pgrank,
-  pgrank_grp_lbl = V(net)$pgrank_grp_lbl,
-  cluster = V(net)$cluster
-) %>%
-  arrange(
-    desc(pgrank), desc(btwn), desc(clsns), desc(indeg), actor
-  )
-
-top10_actors_by_metric <- bind_rows(
-  actors %>%
-    arrange(desc(pgrank)) %>%
-    top_n(10, pgrank) %>%
-    select(
-      actor
-    ) %>%
-    mutate(
-      metric = "Page Rank",
-      value = row_number()
-    ),
-  actors %>%
-    arrange(desc(indeg)) %>%
-    top_n(10, indeg) %>%
-    select(
-      actor
-    ) %>%
-    mutate(
-      metric = "Incoming Degree",
-      value = row_number()
-    ),
-  actors %>%
-    arrange(desc(btwn)) %>%
-    top_n(10, btwn) %>%
-    select(
-      actor
-    ) %>%
-    mutate(
-      metric = "Betweeness",
-      value = row_number()
-    ),
-  actors %>%
-    arrange(desc(clsns)) %>%
-    top_n(10, clsns) %>%
-    select(
-      actor
-    ) %>%
-    mutate(
-      metric = "Closeness",
-      value = row_number()
-    )
-)
-
 #
 #
 # hist(actors$indeg)
 # hist(actors$pgrank)
 # hist(actors$btwn)
 # hist(actors$clsns)
-#
-# top_pgrank <- induced_subgraph(net,
-#                                V(net)$pgrank_grp_lbl == "p100",
-#                                impl = "auto")
-#
-# plot(top_pgrank,
-#      edge.arrow.size = 0,
-#      edge.label = NA,
-#      vertex.label = NA,
-#      vertex.size = 20*(V(top_pgrank)$pgrank/max(V(net)$pgrank)),
-#      vertex.color = V(top_pgrank)$indeg_grp)
-#
-#
