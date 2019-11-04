@@ -18,7 +18,7 @@ keys <- yaml::read_yaml(
 register_google(key = keys$google)
 
 nyc <- get_map(c(-73.965278, 40.782222), zoom = 14,
-               maptype = "")
+               maptype = "terrain")
 
 # central_park_bb <- c(left = -73.985328, bottom = 40.762464,
 #                      right = -73.946704, top = 40.803668)
@@ -52,7 +52,7 @@ p1 <- ggmap(nyc) +
     subtitle = "#TidyTuesday, 2019-02-29: NYC Squirrel Census dataset",
     caption = "@jmcastagnetto, Jesus M. Castagnetto"
   ) +
-  scale_fill_viridis(name = "Scurry",
+  scale_fill_viridis_c(name = "Scurry density",
                      option = "plasma", direction = -1) +
   theme_minimal() +
   theme(
@@ -81,10 +81,28 @@ p1 <- ggmap(nyc) +
              labeller = labeller(shift = shift_labeller,
                                  activity = title_labeller))
 
+
+p2 <- p1 +
+  theme(
+    plot.title = element_blank(),
+    plot.subtitle = element_blank(),
+    plot.caption = element_blank(),
+    legend.title = element_blank(),
+    strip.text = element_blank()
+  )
+
 ggsave(
   plot = p1,
   filename = here::here("2019-10-27_nyc-squirrel-census/squirrel-activities.png"),
   width = 5,
   height = 4
 )
+
+ggsave(
+  plot = p2,
+  filename = here::here("2019-10-27_nyc-squirrel-census/squirrel-activities-for-mosaic.png"),
+  width = 5,
+  height = 4
+)
+
 
