@@ -7,7 +7,8 @@ sqmap <- png::readPNG(
 )
 
 mosaic <- image_to_mosaic(sqmap, img_size = c(120, 96))
-#mosaic %>% build_mosaic()
+mosaic %>% build_mosaic()
+build_instructions(mosaic, num_steps = 12)
 
 brk <- bricks_from_mosaic(mosaic, highest_el = "dark")
 #build_bricks(brk)
