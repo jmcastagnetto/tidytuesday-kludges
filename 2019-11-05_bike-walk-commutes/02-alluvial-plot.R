@@ -1,5 +1,9 @@
 library(ggalluvial)
 
+load(
+  here::here("2019-11-05_bike-walk-commutes/bike-walk-commutes.Rdata")
+)
+
 ggplot(cm_sum,
        aes(y = n_sum, axis2 = city_size, axis1 = mode,
            axis3 = rank_range,
