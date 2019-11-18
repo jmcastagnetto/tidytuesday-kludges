@@ -14,7 +14,18 @@ voters_info <- nz_bird %>%
     dow = lubridate::wday(dt, label = TRUE, abbr = FALSE)
   )
 
-ggplot(voters_info, aes(x = dow, y = n_voters, fill = dow)) +
+voters_per_dow <- nz_bird %>%
+  mutate(
+    dow = lubridate::wday(date, label = TRUE, abbr = FALSE)
+  ) %>%
+  group_by(dow) %>%
+  tally() %>%
+  mutate(
+    n_voters = n / 5
+  )
+
+ggplot(voters_per_dow,
+       aes(x = dow, y = n_voters, fill = dow)) +
   geom_col(show.legend = FALSE, position = "stack") +
   coord_polar() +
   theme_minimal() +
