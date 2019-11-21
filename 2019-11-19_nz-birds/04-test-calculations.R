@@ -126,6 +126,7 @@ ggplot(vote_plot, aes(x = round, y = value, color = candidate)) +
                       nround, ", calculated using RCV algorithm)\nShowing the top 5 candidates"),
     caption = "RCV Algorithm:  https://ballotpedia.org/Ranked-choice_voting_(RCV) // #TidyTuesday, NZ birds dataset (2019-11-19) // @jmcastagnetto, Jesus M. Castagnetto"
   ) +
+  scale_y_continuous(labels = scales::percent, limits = c(0, .6)) +
   scale_color_brewer(name = "Candidates", type = "qual", palette = "Set2") +
   theme_bw() +
   theme(
@@ -141,5 +142,48 @@ ggplot(vote_plot, aes(x = round, y = value, color = candidate)) +
 ggsave(
   filename = here::here("2019-11-19_nz-birds/irv-results-algo.png"),
   width = 12,
+  height = 8
+)
+
+ggplot(pct_plot, aes(x = round, y = value, color = candidate)) +
+  geom_line(size = 2) +
+  gghighlight((candidate %in% df[1:5, ]$candidate),
+              label_key = candidate,
+              use_direct_label = TRUE,
+              use_group_by = FALSE,
+              label_params = list(size = 7),
+              unhighlighted_params = list(size  = 1, color = alpha("grey", 0.5)))  +
+  geom_hline(yintercept = .50, linetype = "dashed") +
+  annotate(
+    geom = "label",
+    label = "50%",
+    x = 1,
+    y = .5,
+    size = 6
+  ) +
+  labs(
+    y = "Percent of adjusted votes",
+    x = "Tally round",
+    title = paste0("The 2019 NZ bird of the year: ", winner),
+    subtitle = paste0("Using Instant Runoff Voting (rounds = ",
+                      nround, ", calculated with RCV algorithm)\nShowing the top 5 candidates"),
+    caption = "RCV Algorithm: https://ballotpedia.org/Ranked-choice_voting_(RCV)\n#TidyTuesday, NZ birds dataset (2019-11-19) // @jmcastagnetto, Jesus M. Castagnetto"
+  ) +
+  scale_y_continuous(labels = scales::percent, limits = c(0, .6)) +
+  scale_color_brewer(name = "Candidates", type = "qual", palette = "Set2") +
+  theme_bw() +
+  theme(
+    plot.margin = unit(c(1, 3.5, 1, 1), "cm"),
+    plot.title = element_text(size = 24),
+    plot.subtitle = element_text(size = 20),
+    plot.caption = element_text(size = 12),
+    axis.title.y.left = element_text(size = 18, hjust = 1),
+    axis.title.x.bottom = element_text(size = 18, hjust = 1),
+    axis.text = element_text(size = 14)
+  )
+
+ggsave(
+  filename = here::here("2019-11-19_nz-birds/irv-pct-results-algo.png"),
+  width = 11,
   height = 8
 )
