@@ -53,7 +53,7 @@ img <- img_raw %>%
 top_5 <- res_df %>%
   filter(candidate %in% results[1:5, 1])
 
-  rcv_plot <- ggplot(data = res_df,
+rcv_plot <- ggplot(data = res_df,
                    aes(x = round, y = votes, color = candidate, group = candidate)) +
   annotation_custom(rasterGrob(img,
                                width = unit(1.5,"npc"),
