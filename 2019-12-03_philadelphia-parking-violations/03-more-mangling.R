@@ -25,7 +25,8 @@ ph_df2 <- ph_df %>%
     month = lubridate::month(issue_datetime),
     week = lubridate::isoweek(issue_datetime),
     period = ifelse(lubridate::am(issue_datetime), "pm", "am"),
-    hour = lubridate::hour(issue_datetime)
+    hour = lubridate::hour(issue_datetime),
+    date = lubridate::date(issue_datetime)
   )
 
 type_pv <- ph_df2 %>%
@@ -106,7 +107,6 @@ ggplot(am_df, aes(x = violation_desc, y = fine,
   geom_jitter(size = .2) +
   coord_flip()
 
-
 ggplot(ph_df2, aes(x = hour, y = fine,
                    fill = period)) +
   geom_violin() +
@@ -116,4 +116,5 @@ ggplot(ph_df2, aes(x = hour, y = fine,
                    fill = period)) +
   geom_point(size = .2, alpha = .3)
 
-# to do -- check calendar heatmaps
+# Check use of https://www.hvitfeldt.me/pkgcal2019/1/ and https://github.com/emitanaka/datalegreyar
+
