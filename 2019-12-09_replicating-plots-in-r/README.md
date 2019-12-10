@@ -30,3 +30,15 @@ So here is the original plot (from BBC)
 And here is my attempt at replicating it (couldn't get the axis title alignment quite the same):
 
 ![My replication of the BBC plot](https://github.com/jmcastagnetto/tidytuesday-kludges/blob/master/2019-12-09_replicating-plots-in-r/sc-bbcplot-divorce-margarine.png)
+
+
+### Finally, the new version of the plot at "Spurious Correlations"
+
+Here is the original version:
+
+![Original (new) plot](https://github.com/jmcastagnetto/tidytuesday-kludges/blob/master/2019-12-09_replicating-plots-in-r/divorce-margarine-new-version.png)
+
+
+And my attempt at replication:
+
+![My take on the (new) plot](https://github.com/jmcastagnetto/tidytuesday-kludges/blob/master/2019-12-09_replicating-plots-in-r/sc-newplot-divorce-margarine.png)
