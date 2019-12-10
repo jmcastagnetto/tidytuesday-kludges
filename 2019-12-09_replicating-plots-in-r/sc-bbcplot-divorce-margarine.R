@@ -56,7 +56,8 @@ p1 <- ggplot(df, aes(group = 1, x = year, y = divorce)) +
                                 hjust = 1,
                                 angle = 0,
                                 color = "blue"),
-    axis.text.y = element_text(color = "blue")
+    axis.text.y = element_text(color = "blue",
+                               size = 12)
   )
 
 p2 <- ggplot(df, aes(group = 1, x = year, y = margarine)) +
@@ -79,7 +80,8 @@ p2 <- ggplot(df, aes(group = 1, x = year, y = margarine)) +
                                       hjust = 0,
                                       angle = 0,
                                       color = "red"),
-    axis.text.y = element_text(color = "red"),
+    axis.text.y = element_text(color = "red",
+                               size = 12),
     plot.title = element_text(size = 24, hjust = 0.5),
     plot.caption = element_text(color = "red",
                                 size = 12, hjust = -1)
