@@ -17,3 +17,16 @@ The original version looks like this:
 And the repliacted version is:
 
 ![Replicated plot of the old version](https://github.com/jmcastagnetto/tidytuesday-kludges/blob/master/2019-12-09_replicating-plots-in-r/sc-oldplot-divorce-margarine.png)
+
+
+### BBC's version of the plot
+
+For this plot I had to get the background image, and [tineye]() helped me find it at BBC's site (https://ichef-1.bbci.co.uk/news/1024/cpsprodpb/18663/production/_95493999_p04z8ltw.jpg)
+
+So here is the original plot (from BBC)
+
+![BBC version of the plot](https://ichef.bbci.co.uk/news/320/media/images/75069000/jpg/_75069991_newcorrelation_graph02b_624gr.jpg)
+
+and my attempt at replicating it (couldn't get the axis title alignment quite the same):
+
+![My replication of the BBC plot](https://github.com/jmcastagnetto/tidytuesday-kludges/blob/master/2019-12-09_replicating-plots-in-r/sc-bbcplot-divorce-margarine.png)
