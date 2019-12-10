@@ -96,9 +96,10 @@ download.file(
 
 bg_img <- bg_fname %>%
   image_read() %>%
-  image_colorize(50, "white")
+  image_colorize(35, "white")
 
 aligned_plots <- align_plots(p1, p2, align="hv", axis="tblr")
+
 ggdraw() +
   draw_image(bg_img) +
   draw_plot(aligned_plots[[1]]) +
