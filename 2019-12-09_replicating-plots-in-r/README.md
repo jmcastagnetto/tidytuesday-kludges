@@ -12,8 +12,8 @@ I will try to attempt reproducing all three (mis-)using [ggplot2](https://github
 
 The original version looks like this:
 
-![Orignal (old) version of the plot](2019-12-09_replicating-plots-in-r/divorce-margarine-old-version.png)
+![Orignal (old) version of the plot](https://github.com/jmcastagnetto/tidytuesday-kludges/blob/master/2019-12-09_replicating-plots-in-r/divorce-margarine-old-version.png)
 
 And the repliacted version is:
 
-![Replicated plot of the old version](2019-12-09_replicating-plots-in-r/sc-oldplot-divorce-margarine.png)
+![Replicated plot of the old version](https://github.com/jmcastagnetto/tidytuesday-kludges/blob/master/2019-12-09_replicating-plots-in-r/sc-oldplot-divorce-margarine.png)
