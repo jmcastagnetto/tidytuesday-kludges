@@ -7,3 +7,13 @@ There are at least three different versions of this plot:
 3. A plot that appeared in the 2014-05-26 article "[Spurious correlations: Margarine linked to divorce?](https://www.bbc.com/news/magazine-27537142)"
 
 I will try to attempt reproducing all three (mis-)using [ggplot2](https://github.com/rafalab/dslabs/), and the dataset from the [dslabs](https://github.com/rafalab/dslabs/) package.
+
+### Old version of the plot
+
+The original version looks like this:
+
+![Orignal (old) version of the plot](2019-12-09_replicating-plots-in-r/divorce-margarine-old-version.png)
+
+And the repliacted version is:
+
+![Replicated plot of the old version](2019-12-09_replicating-plots-in-r/sc-oldplot-divorce-margarine.png)
