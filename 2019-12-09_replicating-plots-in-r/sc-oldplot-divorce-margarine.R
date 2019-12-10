@@ -3,6 +3,10 @@
 library(tidyverse)
 library(cowplot)
 library(ggalt)
+library(showtext)
+
+font_add("trebuchet", "trebuc.ttf")
+showtext_auto()
 
 # library(dslabs)
 # data(divorce_margarine)
@@ -46,6 +50,7 @@ p1 <- ggplot(df, aes(group = 1, x = year, y = divorce)) +
   ) +
   ggdark::dark_theme_minimal() +
   theme(
+    text = element_text(family = "trebuchet"),
     plot.background = element_rect(color = "black", fill = "black"),
     panel.grid = element_blank(),
     axis.line = element_line(color = "white"),
@@ -68,13 +73,14 @@ p2 <- ggplot(df, aes(group = 1, x = year, y = margarine)) +
   ) +
   theme_minimal() +
   theme(
+    text = element_text(family = "trebuchet"),
     panel.border = element_blank(),
     panel.grid = element_blank(),
     axis.ticks.length = unit(.2, "cm"),
     axis.ticks = element_line(color = "white"),
     axis.title = element_text(color = "white"),
     axis.text = element_text(color = "white"),
-    plot.caption = element_text(color = "red")
+    plot.caption = element_text(color = "red", size = 12)
   )
 
 df_dummy <- df %>%
@@ -101,12 +107,13 @@ p_dummy <- ggplot(df_dummy,
   ) +
   guides(fill = guide_legend(nrow = 2)) +
   theme(
+    text = element_text(family = "trebuchet"),
     panel.border = element_blank(),
     panel.grid = element_blank(),
     legend.position = "top",
     legend.justification = "left",
     legend.box.background = element_rect(fill = "black"),
-    legend.text = element_text(color = "white")
+    legend.text = element_text(color = "white", size = 12)
   )
 
 legend <- get_legend(p_dummy)
@@ -133,6 +140,7 @@ gtext_top <- ggdraw() +
     color = c(
       "blue", "black", "blue"
     ),
+    family = "trebuchet",
     y = c(.8, .6, .4),
     x = c(.5, .5, .5)
   ) +
@@ -152,6 +160,7 @@ gtext_bottom <- ggdraw() +
     size = c(
       12, 12, 10
     ),
+    family = "trebuchet",
     color = "black",
     y = c(.8, .6, .4),
     x = .95,
