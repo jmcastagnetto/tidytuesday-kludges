@@ -88,6 +88,7 @@ p2 <- ggplot(df, aes(group = 1, x = year, y = margarine)) +
 bg_fname <- here::here(
   "2019-12-09_replicating-plots-in-r",
   "bbc_background_plot.jpg")
+
 download.file(
   url = "https://ichef-1.bbci.co.uk/news/1024/cpsprodpb/18663/production/_95493999_p04z8ltw.jpg",
   destfile = bg_fname
@@ -95,7 +96,7 @@ download.file(
 
 bg_img <- bg_fname %>%
   image_read() %>%
-  image_colorize(70, "white")
+  image_colorize(50, "white")
 
 aligned_plots <- align_plots(p1, p2, align="hv", axis="tblr")
 ggdraw() +
