@@ -61,7 +61,9 @@ temp_ym_summ <- temperature %>%
     min = min(temperature, na.rm = TRUE),
     max = max(temperature, na.rm = TRUE)
   ) %>%
+  ungroup() %>%
   mutate(
+    city_name = str_to_title(city_name),
     ym = glue::glue("{y}-{m}-01", y = yr, m = mn) %>%
       lubridate::ymd(),
     temp_type_lbl = ifelse(temp_type == "min",
@@ -81,6 +83,7 @@ ggplot(temp_ym_summ,
     caption = "#TidyTuesday 2020-01-07 // @jmcastagnetto, Jesús M. Castagnetto"
   ) +
   facet_grid(temp_type_lbl ~ city_name) +
+  scale_color_manual(values = c("red", "blue")) +
   ggdark::dark_theme_minimal(18) +
   theme(
     plot.margin = unit(rep(1, 4), "cm"),
@@ -88,6 +91,8 @@ ggplot(temp_ym_summ,
     axis.text.x = element_text(angle = 90),
     plot.caption = element_text(family = "Inconsolata"),
     plot.subtitle = element_text(family = "Inconsolata"),
+    strip.text = element_text(family = "Open Sans", face = "bold"),
+    strip.background.x = element_rect(color = "peru"),
     legend.position = "none"
   )
 
