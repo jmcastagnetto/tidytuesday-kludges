@@ -23,13 +23,15 @@ passwords <- passwords %>%
   left_join(
     anagrams,
     by = "signature"
+  ) %>%
+  filter(
+    !is.na(password)
   )
 
 save(
   passwords, anagrams,
   file = here::here("2020-01-14_passwords", "passwords-dataset.Rdata")
 )
-
 
 # src: https://github.com/rfordatascience/tidytuesday/blob/master/data/2020/2020-01-14/readme.md
 # data dictionary
