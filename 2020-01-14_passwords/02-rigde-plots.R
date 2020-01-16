@@ -96,6 +96,9 @@ ggsave(
 )
 
 #--- online cracking times
+minutes_seconds <- 60
+hours_seconds <- minutes_seconds * 60
+days_seconds <- hours_seconds * 24
 years_seconds <- days_seconds * 365.25
 
 ggplot(passwords, aes(x = online_crack_sec, y = category, fill = category)) +
@@ -105,7 +108,7 @@ ggplot(passwords, aes(x = online_crack_sec, y = category, fill = category)) +
   labs(
     y = "",
     x = "Online cracking time",
-    title = "Online cracking times by class are longer",
+    title = "Online cracking times by class are longer than offline, but eerily similar",
     subtitle = paste0("For online cracking, the maximum estimated time to crack them is up to ", ceiling(max(passwords$online_crack_sec / years_seconds)), " years."),
     caption = "#TidyTuesday, 2020-01-14: passwords dataset // @jmcastagnetto, Jesús M. Castagnetto"
   ) +
@@ -119,7 +122,7 @@ ggsave(
     "2020-01-14_passwords",
     "password-online-cracking-times-by-class-ridges.png"
   ),
-  width = 12,
+  width = 13,
   height = 9
 )
 
