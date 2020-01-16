@@ -26,6 +26,42 @@ passwords <- passwords %>%
   ) %>%
   filter(
     !is.na(password)
+  ) %>%
+  select(
+    -font_size
+  )
+
+passwords <- passwords %>%
+  mutate(
+    length = str_length(password),
+    n_nums = str_count(password, "\\d"),
+    n_alpha = str_count(password, "[[:alpha:]]"),
+    n_others = length - n_nums - n_alpha,
+    # cap strength to the 0-10 range
+    strength_capped = ifelse(strength > 10, 10, strength)
+  )
+
+#-- add entropy and online password cracking estimates
+
+minutes_seconds <- 60
+hours_seconds <- minutes_seconds * 60
+days_seconds <- hours_seconds * 24
+weeks_seconds <- days_seconds * 7
+months_seconds <- days_seconds * 30.44
+years_seconds <- days_seconds * 365.25
+
+passwords <- passwords %>%
+  mutate(
+    online_crack_sec = case_when(
+      time_unit == "seconds" ~ value,
+      time_unit == "minutes" ~ value * minutes_seconds,
+      time_unit == "hours" ~ value * hours_seconds,
+      time_unit == "days" ~ value * days_seconds,
+      time_unit == "weeks" ~ value * weeks_seconds,
+      time_unit == "months" ~ value * months_seconds,
+      time_unit == "years" ~ value * years_seconds
+    ),
+    entropy = length * log2(36)
   )
 
 save(
