@@ -14,7 +14,10 @@ corrs <- cor(songs_matrix)
 corrplot(corrs, method = "ellipse",
          add = FALSE, diag = TRUE)
 
-#
+pca_mod <- prcomp(songs_matrix, center = FALSE)
+summary(pca_mod)
+
+s1 <- pca_mod$x[sample(nrow(pca_mod$x), 1000),]
 
 # make 10,000 runs each sampling 500 songs
 # and estimate the best cluster in each run
