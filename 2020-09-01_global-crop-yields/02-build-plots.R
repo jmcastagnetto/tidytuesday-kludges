@@ -189,7 +189,7 @@ south_america <- proc_region(regions_crops, "South America")
 plot_text_2 <- wrap_elements(
   grid::textGrob(
     str_wrap(
-      "Looking at the year over year crop yield changes, there are definite correlations between the different types of crops within regions, surely because of regional enviromental differences.\n\nThis generates a sort of \"fingerprint\" that distinguishes between the South, Central and Northen Americas.",
+      "Looking at the year over year crop yield changes, there are definite correlations between the different types of crops within regions, surely because of regional enviromental differences.\n\nThis generates a sort of \"fingerprint\" that distinguishes between the South, Central and Northern Americas.",
       width = 40
     ),
     x = unit(0.1, "npc"),
