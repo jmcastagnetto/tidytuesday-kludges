@@ -11,15 +11,28 @@ women <- read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday
       TRUE ~ country
     ),
     iso3c = countryname(tmp, destination = "iso3c"),
-    continent = countryname(tmp, destination = "continent"),
-    wb_region = countryname(tmp, destination = "region"),
+    region = countryname(tmp, destination = "region") %>%
+      str_wrap(12),
+    region = factor(
+      region,
+      levels = c(
+        "Latin\nAmerica &\nCaribbean",
+        "North\nAmerica",
+        "Middle East\n& North\nAfrica",
+        "Sub-Saharan\nAfrica",
+        "Europe &\nCentral Asia",
+        "East Asia &\nPacific",
+        "South Asia"
+      ),
+      ordered = TRUE
+    ),
     flag = countryname(tmp, destination = "unicode.symbol")
   ) %>%
   select(-tmp)
 
 p1 <- ggplot(women %>% filter(!is.na(iso3c)),
        aes(
-         x = str_wrap(wb_region, 12),
+         x = region,
          y = category
        )
       ) +
@@ -53,7 +66,7 @@ p1 <- ggplot(women %>% filter(!is.na(iso3c)),
     legend.direction = "horizontal",
     legend.key.width = unit(1.5, "cm")
   )
-
+p1
 ggsave(
   plot = p1,
   filename = "2020-12-08_women-of-2020/category-geodist.png",
