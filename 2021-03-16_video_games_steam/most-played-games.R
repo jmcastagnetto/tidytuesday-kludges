@@ -1,6 +1,7 @@
 library(tidyverse)
 
-most_played <- games %>%
+games <-readRDS("2021-03-16_video_games_steam/games.rds")
+most_played <- readRDS("2021-03-16_video_games_steam/games.rds") %>%
   arrange(year, month, avg) %>%
   group_by(year, month) %>%
   mutate(
