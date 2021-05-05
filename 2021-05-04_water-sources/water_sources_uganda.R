@@ -50,11 +50,11 @@ p1 <- ggplot() +
   geom_sf_text(data = uganda_border,
                aes(label = formal_en),
                angle = 45,
-               size = 14,
+               size = 9,
                fontface = "bold",
                alpha = .5) +
   scale_color_manual(values = type_colors) +
-  geom_sf(data = rivers, color = "", size = 2, alpha = .6) +
+  geom_sf(data = rivers, color = "blue", size = 2, alpha = .6) +
   geom_sf_label(data = rivers, aes(label = name), size = 2) +
   coord_sf(
     xlim = c(uganda_bb[1], uganda_bb[3]),
@@ -80,7 +80,7 @@ p2 <- ggplot() +
   geom_sf_text(data = uganda_border,
                aes(label = formal_en),
                angle = 45,
-               size = 14,
+               size = 9,
                fontface = "bold",
                alpha = .5) +
   scale_color_manual(
