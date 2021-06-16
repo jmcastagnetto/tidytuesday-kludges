@@ -1,0 +1,72 @@
+---
+title: "The tangled web of W.E.B. Du Bois's challenge"
+subtitle: "Imagined using tweets timestamps"
+output: html_document
+---
+
+```{css echo=FALSE}
+.title {
+  font-size: 28px;
+}
+```
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  echo = FALSE, 
+  warning = FALSE, 
+  message = FALSE
+)
+library(tidyverse)
+library(leaflet)
+library(leaflet.extras)
+```
+
+```{r out.width="90%"}
+
+tweets <- read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-06-15/tweets.csv')
+
+df <- tweets %>%
+  mutate(
+    day = lubridate::wday(datetime, label = TRUE)
+  ) %>%
+  filter(!is.na(long) & !is.na(lat) & !is.na(datetime))
+
+pal <- colorFactor(palette = "Set2", domain = levels(df$day))
+
+leaflet(df) %>%
+  addProviderTiles(providers$Stamen.Watercolor) %>%
+  addProviderTiles(providers$Stamen.TonerLines) %>%
+  addPolygons(
+    lng = ~long,
+    lat = ~lat,
+    weight = .5,
+    color = "#555555",
+    fillColor = "yellow",
+    fillOpacity = .2
+  ) %>%
+  addCircleMarkers(
+    lng = ~long,
+    lat = ~lat,
+    radius = ~like_count/100,
+    color = ~pal(day),
+    opacity = 1,
+    popup = ~content,
+    label = ~glue::glue("{day}, @{username}"),
+    group = ~day
+  ) %>%
+  addLegend(
+    values = ~day,
+    pal = pal,
+    title = "Day",
+    opacity = 1, 
+    position = "bottomleft"
+  ) %>%
+  addLayersControl(
+    overlayGroups = ~sort(day),
+    options = layersControlOptions(collapsed = FALSE)
+  ) %>% 
+  addMiniMap(width = 100, height = 100)
+```
+
+`@jmcastagnetto, Jesus M. Castagnetto (2021-06-15)`
