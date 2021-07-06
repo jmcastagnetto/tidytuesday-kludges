@@ -84,7 +84,7 @@ p1 <- ggplot(
 p2 <- ggtrack(
   p1,
   qr_content = "https://github.com/jmcastagnetto/tidytuesday-kludges",
-  logo = "~/Pictures/for-tagline-jmcastagnetto-twitter2.png",
+  logo = "common/for-tagline-jmcastagnetto-twitter2.png",
   height_plot = 25,
   height_tracker = 2.5,
   plot.background = element_rect(fill = "gray90", color = "white"),
