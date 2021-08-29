@@ -1,0 +1,40 @@
+digraph G {
+rankdir = "LR";
+node[shape="box"];
+graph[
+    labelloc = t;
+    shape="plain",
+    label=<
+      <table border="0">
+      <tr><td align="center"><b><font color="#a13d2d" point-size="42">Hybrid Lemurs</font></b></td></tr>
+      <tr><td align="center"><font color="darkgrey" point-size="30">#TidyTuesday 2021-08-24</font></td></tr>
+      <tr><td align="right"><font color="black" point-size="24">@jmcastagnetto, Jesus M. Castagnetto</font></td></tr> </table>
+      >
+  ]
+"White-fronted brown lemur (EALB♀) + Black lemur (EMAC♂)" -> "Hybrid\n(EUL)" [label = "N: 2"];
+"White-fronted brown lemur (EALB♀) + Hybrid (EUL♂)" -> "Hybrid\n(EUL)" [label = "N: 8"];
+"White-fronted brown lemur (EALB♀) + Unknown (Unknown♂)" -> "Hybrid\n(EUL)" [label = "N: 5"];
+"Collared brown lemur (ECOL♀) + Unknown (Unknown♂)" -> "Hybrid\n(EUL)" [label = "N: 1"];
+"Common brown lemur (EFUL♀) + Red-fronted brown lemur (ERUF♂)" -> "Hybrid\n(EUL)" [label = "N: 4"];
+"Common brown lemur (EFUL♀) + Hybrid (EUL♂)" -> "Hybrid\n(EUL)" [label = "N: 2"];
+"Black lemur (EMAC♀) + Collared brown lemur (ECOL♂)" -> "Hybrid\n(EUL)" [label = "N: 1"];
+"Black lemur (EMAC♀) + Crowned lemur (ECOR♂)" -> "Hybrid\n(EUL)" [label = "N: 1"];
+"Black lemur (EMAC♀) + Common brown lemur (EFUL♂)" -> "Hybrid\n(EUL)" [label = "N: 1"];
+"Black lemur (EMAC♀) + Unknown (Unknown♂)" -> "Hybrid\n(EUL)" [label = "N: 1"];
+"Red-bellied lemur (ERUB♀) + Hybrid (EUL♂)" -> "Hybrid\n(EUL)" [label = "N: 1"];
+"Red-fronted brown lemur (ERUF♀) + Collared brown lemur (ECOL♂)" -> "Hybrid\n(EUL)" [label = "N: 1"];
+"Red-fronted brown lemur (ERUF♀) + Common brown lemur (EFUL♂)" -> "Hybrid\n(EUL)" [label = "N: 2"];
+"Red-fronted brown lemur (ERUF♀) + Hybrid (EUL♂)" -> "Hybrid\n(EUL)" [label = "N: 5"];
+"Red-fronted brown lemur (ERUF♀) + Unknown (Unknown♂)" -> "Hybrid\n(EUL)" [label = "N: 4"];
+"Sanford's brown lemur (ESAN♀) + Hybrid (EUL♂)" -> "Hybrid\n(EUL)" [label = "N: 5"];
+"Sanford's brown lemur (ESAN♀) + Unknown (Unknown♂)" -> "Hybrid\n(EUL)" [label = "N: 6"];
+"Hybrid (EUL♀) + White-fronted brown lemur (EALB♂)" -> "Hybrid\n(EUL)" [label = "N: 18"];
+"Hybrid (EUL♀) + Collared brown lemur (ECOL♂)" -> "Hybrid\n(EUL)" [label = "N: 3"];
+"Hybrid (EUL♀) + Common brown lemur (EFUL♂)" -> "Hybrid\n(EUL)" [label = "N: 19"];
+"Hybrid (EUL♀) + Black lemur (EMAC♂)" -> "Hybrid\n(EUL)" [label = "N: 3"];
+"Hybrid (EUL♀) + Red-fronted brown lemur (ERUF♂)" -> "Hybrid\n(EUL)" [label = "N: 1"];
+"Hybrid (EUL♀) + Sanford's brown lemur (ESAN♂)" -> "Hybrid\n(EUL)" [label = "N: 1"];
+"Hybrid (VAR♀) + Red ruffed lemur (VRUB♂)" -> "Hybrid\n(VAR)" [label = "N: 14"];
+"Red ruffed lemur (VRUB♀) + Unknown (Unknown♂)" -> "Hybrid\n(VAR)" [label = "N: 8"];
+"Black-and-white ruffed lemur (VVV♀) + Unknown (Unknown♂)" -> "Hybrid\n(VAR)" [label = "N: 5"];
+}
