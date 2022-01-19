@@ -15,6 +15,24 @@ chocolate_df <- chocolate %>%
       origin = "country.name.en",
       destination = "continent"
     ),
+    country_company = str_replace_all(
+      company_location,
+      c(
+        "U.A.E." = "United Arab Emirates",
+        "U.S.A." = "United States",
+        "^Sao Tome$" = "São Tomé & Príncipe",
+        "^Sao Tome & Principe$" = "São Tomé & Príncipe",
+        "St.Vincent-Grenadines" = "St. Vincent & Grenadines",
+        "U.K." = "United Kingdom",
+        "Wales" = "United Kingdom",
+        "Scotland" = "United Kingdom",
+        "Amsterdam" = "Netherlands"
+      )
+    ) %>%
+      countrycode::countrycode(
+        origin = "country.name.en",
+        destination = "iso3c"
+      ),
     country = countrycode::countrycode(
       country_of_bean_origin,
       origin = "country.name.en",
