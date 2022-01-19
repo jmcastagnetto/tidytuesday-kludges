@@ -129,9 +129,6 @@ anim <- map1 +
   ) +
   transition_states(review_date, transition_length = 5, state_length = 5)
 
-+
-  enter_fade() +
-  exit_fade()
 #anim
 anim_save(
   anim,
