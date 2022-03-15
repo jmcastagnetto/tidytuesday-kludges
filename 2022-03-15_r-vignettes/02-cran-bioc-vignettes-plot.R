@@ -53,7 +53,7 @@ ggplot(
   scale_y_continuous(labels = scales::comma, n.breaks = 8) +
   scale_color_manual(values = okabe_ito_palette) +
   labs(
-    title = "The number of packages without vignettes is proportionally lower in **Bioconductor** compared to **CRAN**. There is also a more noticeable increase in the use of *Rmarkdown* coupled with a decrease in use of *Sweave*, but that trend is more noticable in **CRAN** than in **Bioconductor** where there are still a good number of packages using *Sweave*. Very few packages use vignettes written in both formats.",
+    title = "The number of packages without vignettes is proportionally lower in **Bioconductor** compared to **CRAN**. There is also an increase in the use of *Rmarkdown* coupled with a decrease in use of *Sweave*, but that trend is more noticable in **CRAN** than in **Bioconductor** where there are still a good number of packages using *Sweave*. Very few packages use vignettes written in both formats.",
     subtitle = "Data source: #TidyTuesday 'R vignettes' (2022-03-15) - Range: 2000 - 2020",
     caption = "@jmcastagnetto, Jesus M. Castagnetto",
     x = "",
