@@ -49,3 +49,4 @@ vignettes/*.pdf
 .Rproj.user
 
 common/*.yaml
+rosm.cache/
